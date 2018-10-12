@@ -1,3 +1,8 @@
+$themeColor = #333
+$themeColorLight = #696969
+$themeColorLighter = #ddd
+$themeBgColor = #f03d37
+
 *
   margin 0
   padding 0
@@ -21,12 +26,29 @@ html
 
 #app #footer-nav
   position fixed
+  display flex
+  padding 1.6rem 0
+  flex-direction row
+  justify-content center
+  align-items center
   width 100%
   height 2.75rem
   bottom 0
   left 0
   border 1px solid red
-
-  svg
-    width 1.6rem
-    height 1.6rem
+  dl
+    flex 1
+    text-align center
+    dt svg
+      width 1.6rem
+      height 1.6rem
+      margin-top 0.2rem
+      fill $themeColorLight
+    dd
+      font-size 12px
+      color $themeColorLight
+  dl.router-link-exact-active.router-link-active
+    dt svg
+      fill $themeBgColor
+    dd
+      color $themeBgColor
