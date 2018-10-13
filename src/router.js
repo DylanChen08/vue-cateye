@@ -27,7 +27,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "about" */ './components/pages/index.vue')
+            component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/index.vue')
         },
         {
             path: '/pages/carousel',
@@ -35,7 +35,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "about" */ './components/pages/carousel.vue')
+            component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/carousel.vue')
         },
         {
             path: '/pages/cinemas',
@@ -43,7 +43,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "about" */ './components/pages/cinemas.vue')
+            component: () => import(/* webpackChunkName: "about" */ './components/pages/Cinemas/cinemas.vue')
         },
         {
             path: '/pages/movies',
@@ -51,7 +51,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "about" */ './components/pages/movies.vue')
+            component: () => import(/* webpackChunkName: "about" */ './components/pages/Movies/movies.vue')
         },
         {
             path: '/pages/personal-center',
@@ -59,7 +59,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "about" */ './components/pages/personal-center.vue')
+            component: () => import(/* webpackChunkName: "about" */ './components/pages/PersonalCenter/personalCenter.vue')
         },
         {
             path: '/pages/shows',
@@ -67,7 +67,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "about" */ './components/pages/shows.vue')
+            component: () => import(/* webpackChunkName: "about" */ './components/pages/Shows/shows.vue')
         },
 
     ]
