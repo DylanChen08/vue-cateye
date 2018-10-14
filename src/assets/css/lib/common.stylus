@@ -17,20 +17,25 @@ ul, ol
 html
   font-size 16px
 
+/*改写swiper样式*/
+.wh_indicator_item
+  background: #686a6e
+
+.wh_indicator_item.wh_show_bgcolor
+  background #e6e6e7
+
 /*改写element ui 样式*/
 .el-tabs__header
-  margin 0!important
-
+  margin 0 !important
 
 .el-tabs__nav
-  display flex!important
-  float none!important
-
+  display flex !important
+  float none !important
 
 .el-tabs__item
-  flex 1!important
+  flex 1 !important
   padding 0 !important
-  text-align center!important
+  text-align center !important
 
 .el-tabs__item.is-active
   color $themeBgColor !important
