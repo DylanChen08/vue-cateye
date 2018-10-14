@@ -17,6 +17,27 @@ ul, ol
 html
   font-size 16px
 
+/*改写element ui 样式*/
+.el-tabs__header
+  margin 0!important
+
+
+.el-tabs__nav
+  display flex!important
+  float none!important
+
+
+.el-tabs__item
+  flex 1!important
+  padding 0 !important
+  text-align center!important
+
+.el-tabs__item.is-active
+  color $themeBgColor !important
+
+.el-tabs__active-bar
+  background $themeBgColor !important
+
 .icon
   width 1em
   height 1em
