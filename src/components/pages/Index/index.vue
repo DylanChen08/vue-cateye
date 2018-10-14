@@ -1,6 +1,5 @@
 <template>
     <div>
-        index-moviesddddd43433
         <carousel></carousel>
     </div>
 </template>

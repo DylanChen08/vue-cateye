@@ -1,63 +1,34 @@
 <template>
-    <div>
-        <ul>
-            aaa
-            <li v-for="item in $store.state">
-                {{item}}
-            </li>
-        </ul>
-        <swiper :options="swiperOption" ref="mySwiper" @touchstart.prevent="touchStart">
-            <!-- slides -->
-            <swiper-slide >
-                I'm Slide 1
-
-            </swiper-slide>
-            <!-- Optional controls -->
-            <div class="swiper-pagination" slot="pagination"></div>
-            <!--<div class="swiper-button-prev" slot="button-prev"></div>-->
-            <!--<div class="swiper-button-next" slot="button-next"></div>-->
-            <div class="swiper-scrollbar" slot="scrollbar"></div>
-        </swiper>
+    <div id="swiper">
+        <Swiper v-if="true" v-for="(item,index) in $store.state.carousel" :key="index">
+            <Slide v-for="(value,index2) in item">
+                <a href=""><img width="100%" height="100px" :src="value.image" alt=""></a>
+            </Slide>
+        </Swiper>
     </div>
+
 </template>
 
 <script>
-    import 'swiper/dist/css/swiper.css'
-    import {swiper, swiperSlide} from 'vue-awesome-swiper'
+
+
+    import {Swiper, Slide} from 'vue-swiper-component';
 
     export default {
         name: "carousel",
         components: {
-            swiper,
-            swiperSlide
+            Swiper,
+            Slide
         },
         data() {
-            return {
-                swiperOption: {
-                    // some swiper options/callbacks
-                    // 所有的参数同 swiper 官方 api 参数
-                    // ...
-                }
-            }
+            return {}
+
         },
-        computed: {
-            swiper() {
-                return this.$refs.mySwiper.swiper
-            }
-        },
-        mounted() {
-            // current swiper instance
-            // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-            console.log('this is current swiper instance object', this.swiper)
-            this.swiper.slideTo(3, 1000, false)
-        },
-        methods:{}
+        methods: {}
     }
 </script>
 
 <style lang="stylus" scoped>
-    .swiper-container
-        width 100%
-        height: 100%
-
+    #swiper img
+        height 10.2rem
 </style>
