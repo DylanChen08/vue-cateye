@@ -1,8 +1,12 @@
 <template>
     <div>
+        <!--轮播组件-->
         <carousel></carousel>
         <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="电影" name="first">电影</el-tab-pane>
+            <el-tab-pane label="电影" name="first">
+                <!--首页/电影组件-->
+                <indexMovies></indexMovies>
+            </el-tab-pane>
             <el-tab-pane label="电视剧" name="second">电视剧</el-tab-pane>
             <el-tab-pane label="综艺" name="third">综艺</el-tab-pane>
             <el-tab-pane label="书籍" name="fourth">书籍</el-tab-pane>
@@ -12,6 +16,7 @@
 
 <script>
     import carousel from './carousel'
+    import indexMovies from './indexMovies'
     export default {
         name: "index",
         data(){
@@ -20,7 +25,8 @@
             }
         },
         components:{
-            carousel
+            carousel,
+            indexMovies
         },
         methods: {
             handleClick(tab, event) {

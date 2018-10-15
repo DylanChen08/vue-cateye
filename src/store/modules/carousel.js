@@ -46,7 +46,7 @@ const a = [{
 
 
 const state = {
-    carousel: a
+    carousel: a   //测试数据
 }
 console.log(6)
 console.log(state)

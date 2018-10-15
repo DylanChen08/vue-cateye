@@ -1,6 +1,6 @@
 $themeColor = #333
 $themeColorLight = #696969
-$themeColorLighter = #ddd
+$themeColorLighter = #999
 $themeBgColor = #f03d37
 
 *
@@ -16,6 +16,7 @@ ul, ol
 
 html
   font-size 16px
+
 
 /*改写swiper样式*/
 .wh_indicator_item
@@ -36,6 +37,7 @@ html
   flex 1 !important
   padding 0 !important
   text-align center !important
+  font-weight 700 !important
 
 .el-tabs__item.is-active
   color $themeBgColor !important
