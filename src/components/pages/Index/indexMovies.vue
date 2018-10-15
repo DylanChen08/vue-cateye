@@ -73,9 +73,9 @@
     #indexMovies
         padding 0.88rem 0.88rem 10rem
         border 1px solid red
-        .hot-show,.pre-show
+        .hot-show, .pre-show
             margin-top .6rem
-        section.hot-show-title,section.pre-show-title
+        section.hot-show-title, section.pre-show-title
             display flex
             justify-content space-between
             span
