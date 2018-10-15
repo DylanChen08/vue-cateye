@@ -64,6 +64,7 @@ html
   bottom 0
   left 0
   box-shadow 0 0 3px 2px #ddd
+  background white
   dl
     flex 1
     text-align center

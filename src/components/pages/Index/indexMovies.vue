@@ -28,17 +28,17 @@
                 </li>
             </ul>
         </div>
-        <div class="hot-show">
-            <section class="hot-show-title">
+        <div class="pre-show">
+            <section class="pre-show-title">
                 <span>即将上映</span>
                 <router-link to="/pages/Movies/moviesReleased"> 全部191部>></router-link>
             </section>
             <ul v-for="item in $store.state.pageIndex" :key="item.id">
                 <li class="hide-scroll-bar" v-for="value in item">
-                    <ul class="hot-show-block-wrapper">
-                        <li class="hot-show-block" v-for="data in value.preview">
+                    <ul class="pre-show-block-wrapper">
+                        <li class="pre-show-block" v-for="data in value.preview">
                             <img :src="data.url" :alt="data.title"/>
-                            <section class="hot-show-block-mask">
+                            <section class="pre-show-block-mask">
                                 <div class="tags-head">
                                     <span v-if="data.doubleDimension" class="doubleDimension">2D IMAX</span>
                                     <span v-if="data.tripleDimension" class="tripleDimension">3D</span>
@@ -71,9 +71,11 @@
 <style lang="stylus" scoped>
     @import "../../../assets/css/lib/common.stylus"
     #indexMovies
-        padding 0.88rem 0.88rem 1.0rem
+        padding 0.88rem 0.88rem 10rem
         border 1px solid red
-        section.hot-show-title
+        .hot-show,.pre-show
+            margin-top .6rem
+        section.hot-show-title,section.pre-show-title
             display flex
             justify-content space-between
             span
@@ -83,13 +85,12 @@
                 font-size 0.81rem
                 color $themeColorLighter
 
-
-    .hot-show-block-wrapper
+    .hot-show-block-wrapper, .pre-show-block-wrapper
         white-space nowrap
         overflow-x auto
         padding 0.75rem 0
 
-    .hot-show-block
+    .hot-show-block, .pre-show-block
         position relative
         display inline-block
         margin-right 0.6rem
@@ -98,7 +99,7 @@
             width 100%
             height 8.04rem
             border-radius 0.2rem
-        .hot-show-block-mask
+        .hot-show-block-mask, .pre-show-block-mask
             position absolute
             left 0
             top 0

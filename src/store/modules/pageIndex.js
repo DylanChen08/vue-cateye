@@ -339,7 +339,7 @@ const b =[
                 showRate: false,
                 rate: null,
                 viewCount: 19344,
-                date: "2018-12-8T03:24:00"
+                date: "2018-12-08T03:24:00"
             }
         ]
     }
