@@ -1,10 +1,18 @@
 <template>
-    <div>电影</div>
+    <div>
+        <fixedTopBar></fixedTopBar>
+    </div>
+
 </template>
 
 <script>
+    import fixedTopBar from '../../common/fixedTopBar'
+
     export default {
-        name: "movies"
+        name: "movies",
+        components:{
+            fixedTopBar
+        }
     }
 </script>
 

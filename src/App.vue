@@ -2,7 +2,9 @@
     <div id="app">
         <!--主体-->
         <main id="main">
-            <router-view></router-view>
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </main>
         <!--底部导航组件-->
         <FooterNav></FooterNav>

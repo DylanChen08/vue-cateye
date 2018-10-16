@@ -13,6 +13,16 @@ export default new Router({
         //   name: 'home',
         //   component: Home
         // },
+
+        {
+            //设置默认路由，一开始默认进入主页
+            path: '*',
+            name: '',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/index.vue')
+        },
         {
             path: '/about',
             name: 'about',
