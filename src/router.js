@@ -69,11 +69,11 @@ export default new Router({
             children: [
                 {
                     path: '/pages/movies/moviesPreShows',
-                    name: 'subPage',
+                    name: 'moviesPreShows',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Movies/moviesPreShows.vue'),
                 }, {
                     path: '/pages/movies/moviesReleased',
-                    name: 'subPage',
+                    name: 'moviesReleased',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Movies/moviesReleased.vue'),
                 },
             ]
