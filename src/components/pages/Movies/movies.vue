@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="movies">
         <fixedTopBar></fixedTopBar>
     </div>
 

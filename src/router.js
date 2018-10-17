@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 
 Vue.use(Router)
 
@@ -8,17 +7,6 @@ export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
-        // {
-        //   path: '/',
-        //   name: 'home',
-        //   component: Home
-        // },
-        // {
-        //     path: '/about',
-        //     name: 'about',
-        //     component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-        // },
-
         {
             //设置默认路由，一开始默认进入主页
             path: '*',
@@ -30,28 +18,28 @@ export default new Router({
         },
         {
             path: '/pages/index',
-            name: 'index',
+            name: '',
             component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/index.vue'),
             children: [
                 {
                     path: '/pages/index/carousel',
-                    name: 'carousel',
+                    name: '',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/carousel.vue'),
                 }, {
                     path: '/pages/index/indexBooks',
-                    name: 'indexBooks',
+                    name: '',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/indexBooks.vue'),
                 }, {
                     path: '/pages/index/indexMovies',
-                    name: 'indexMovies',
+                    name: '',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/indexMovies.vue'),
                 }, {
                     path: '/pages/index/indexTvSeries',
-                    name: 'indexTvSeries',
+                    name: '',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/indexTvSeries.vue'),
                 }, {
                     path: '/pages/index/indexVarietyShows',
-                    name: 'indexVarietyShows',
+                    name: '',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/indexVarietyShows.vue'),
                 },
             ]
@@ -69,25 +57,24 @@ export default new Router({
             children: [
                 {
                     path: '/pages/movies/moviesPreShows',
-                    name: 'moviesPreShows',
-                    component: () => import(/* webpackChunkName: "about" */ './components/pages/movies/moviesPreShows.vue'),
+                    name: 'subPage',
+                    component: () => import(/* webpackChunkName: "about" */ './components/pages/Movies/moviesPreShows.vue'),
                 }, {
                     path: '/pages/movies/moviesReleased',
-                    name: 'moviesReleased',
-                    component: () => import(/* webpackChunkName: "about" */ './components/pages/movies/moviesReleased.vue'),
+                    name: 'subPage',
+                    component: () => import(/* webpackChunkName: "about" */ './components/pages/Movies/moviesReleased.vue'),
                 },
             ]
         },
         {
             path: '/pages/personal-center',
-            name: 'personal-center',
+            name: '',
 
             component: () => import(/* webpackChunkName: "about" */ './components/pages/PersonalCenter/personalCenter.vue')
         },
         {
             path: '/pages/shows',
-            name: 'shows',
-
+            name: '',
             component: () => import(/* webpackChunkName: "about" */ './components/pages/Shows/shows.vue')
         },
 
