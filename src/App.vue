@@ -18,6 +18,18 @@
         name: 'App',
         components: {
             FooterNav
+        },
+        watch:{
+            '$route' (to, from) {
+                // react to route changes...
+                console.log("to")
+                console.log(to)
+                console.log("from")
+                console.log(from)
+
+                const toDepth = to.path.split('/')
+                console.log(toDepth)
+            }
         }
     }
 </script>
