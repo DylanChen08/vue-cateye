@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from './views/Home.vue'
 
 Vue.use(Router)
 
@@ -7,6 +8,17 @@ export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
+        // {
+        //   path: '/',
+        //   name: 'home',
+        //   component: Home
+        // },
+        // {
+        //     path: '/about',
+        //     name: 'about',
+        //     component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+        // },
+
         {
             //设置默认路由，一开始默认进入主页
             path: '*',
@@ -18,28 +30,28 @@ export default new Router({
         },
         {
             path: '/pages/index',
-            name: '',
+            name: 'index',
             component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/index.vue'),
             children: [
                 {
                     path: '/pages/index/carousel',
-                    name: '',
+                    name: 'carousel',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/carousel.vue'),
                 }, {
                     path: '/pages/index/indexBooks',
-                    name: '',
+                    name: 'indexBooks',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/indexBooks.vue'),
                 }, {
                     path: '/pages/index/indexMovies',
-                    name: '',
+                    name: 'indexMovies',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/indexMovies.vue'),
                 }, {
                     path: '/pages/index/indexTvSeries',
-                    name: '',
+                    name: 'indexTvSeries',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/indexTvSeries.vue'),
                 }, {
                     path: '/pages/index/indexVarietyShows',
-                    name: '',
+                    name: 'indexVarietyShows',
                     component: () => import(/* webpackChunkName: "about" */ './components/pages/Index/indexVarietyShows.vue'),
                 },
             ]
@@ -68,13 +80,14 @@ export default new Router({
         },
         {
             path: '/pages/personal-center',
-            name: '',
+            name: 'personal-center',
 
             component: () => import(/* webpackChunkName: "about" */ './components/pages/PersonalCenter/personalCenter.vue')
         },
         {
             path: '/pages/shows',
-            name: '',
+            name: 'shows',
+
             component: () => import(/* webpackChunkName: "about" */ './components/pages/Shows/shows.vue')
         },
 

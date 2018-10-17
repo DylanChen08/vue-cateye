@@ -1,6 +1,7 @@
 <template>
     <div id="movies">
         <fixedTopBar></fixedTopBar>
+        <router-view name="moviesSubPage"></router-view>
     </div>
 
 </template>
