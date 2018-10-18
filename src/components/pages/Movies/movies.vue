@@ -26,7 +26,7 @@
         },
         data() {
             return {
-                view: 'moviesPreShows',
+                view: 'moviesReleased',
                 enterAnimate: '',
                 leaveAnimate: ''
             }
@@ -34,13 +34,13 @@
         methods: {
             released() {
                 this.view = 'moviesReleased'
-                this.enterAnimate='animated fadeInRight'
-                this.leaveAnimate='animated fadeOutLeft'
+                this.enterAnimate='animated fadeInLeft'
+                this.leaveAnimate='animated fadeOutRight'
             },
             preShow() {
                 this.view = 'moviesPreShows'
-                this.enterAnimate='animated fadeInLeft'
-                this.leaveAnimate='animated fadeOutRight'
+                this.enterAnimate='animated fadeInRight'
+                this.leaveAnimate='animated fadeOutLeft'
             }
 
         }
@@ -53,5 +53,5 @@
     .xxx9
         position absolute
         top 10%;
-        left 0 ;
+        left 0
 </style>

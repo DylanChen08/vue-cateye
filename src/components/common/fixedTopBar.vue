@@ -74,6 +74,7 @@
         width 100%
         border 1px solid red
         background $themeBgColor
+        z-index 10000
         .movie,
         .cinema,
         .show
