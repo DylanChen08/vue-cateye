@@ -7,8 +7,8 @@
                     CN
                 </section>
                 <section class="middle-title movies">
-                    <span>正在热映</span>
-                    <span>即将热映</span>
+                    <span @click="onHotShow">正在热映</span>
+                    <span @click="onPreShow">即将热映</span>
                 </section>
                 <section class="search-icon">xxx</section>
             </div>
@@ -44,7 +44,24 @@
 
 <script>
     export default {
-        name: "fixedTopBar"
+        name: "fixedTopBar",
+        props: ['view'],
+        data() {
+            return {
+                val: ''
+            }
+        },
+        created() {
+            this.val = this.view
+        },
+        methods: {
+            onHotShow() {
+                this.$emit('toHotShow', this.val)
+            },
+            onPreShow() {
+                this.$emit('toPreShow', this.val)
+            }
+        }
     }
 </script>
 
@@ -62,7 +79,7 @@
         .show
             display grid
             grid auto / 3.75rem auto 2.5rem
-            .area,.middle-title,.search-icon
+            .area, .middle-title, .search-icon
                 padding 1rem 0
                 justify-items center
                 text-align center

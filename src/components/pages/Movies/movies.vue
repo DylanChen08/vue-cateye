@@ -1,22 +1,57 @@
 <template>
     <div id="movies">
-        <fixedTopBar></fixedTopBar>
-        <router-view name=""></router-view>
+        <fixedTopBar @toHotShow="released" @toPreShow="preShow"></fixedTopBar>
+        <transition
+                name="component-fade"
+                :enter-active-class="enterAnimate"
+                :leave-active-class="leaveAnimate"
+        >
+            <components class="xxx9" v-bind:is="view"></components>
+        </transition>
     </div>
 
 </template>
 
 <script>
     import fixedTopBar from '../../common/fixedTopBar'
+    import moviesReleased from './moviesReleased'
+    import moviesPreShows from './moviesPreShows'
 
     export default {
         name: "movies",
-        components:{
-            fixedTopBar
+        components: {
+            fixedTopBar,
+            moviesReleased,
+            moviesPreShows
+        },
+        data() {
+            return {
+                view: 'moviesPreShows',
+                enterAnimate: '',
+                leaveAnimate: ''
+            }
+        },
+        methods: {
+            released() {
+                this.view = 'moviesReleased'
+                this.enterAnimate='animated fadeInRight'
+                this.leaveAnimate='animated fadeOutLeft'
+            },
+            preShow() {
+                this.view = 'moviesPreShows'
+                this.enterAnimate='animated fadeInLeft'
+                this.leaveAnimate='animated fadeOutRight'
+            }
+
         }
+
     }
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
+    @import "../../../assets/css/lib/animate.css";
+    .xxx9
+        position absolute
+        top 10%;
+        left 0 ;
 </style>
