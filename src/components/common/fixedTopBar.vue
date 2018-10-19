@@ -7,8 +7,8 @@
                     CN
                 </section>
                 <section class="middle-title movies">
-                    <span class="hot-show" v-bind:class="[isActive1?'active':'xx']" @click="onHotShow">正在热映</span>
-                    <span class="pre-show" v-bind:class="[isActive2?'active':'xx']" @click="onPreShow">即将热映</span>
+                    <span class="hot-show" v-bind:class="[isActive1?'active':'']" @click="onHotShow">正在热映</span>
+                    <span class="pre-show" v-bind:class="[isActive2?'active':'']" @click="onPreShow">即将热映</span>
                 </section>
                 <section class="search-icon">xxx</section>
             </div>

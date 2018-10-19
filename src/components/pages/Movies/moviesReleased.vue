@@ -4,20 +4,23 @@
             <ul>
                 <li v-for="item in $store.state.movieReleasedList">
                     <ul>
-                        <li class="movie-list-block" v-for="value in item.data.hot" :key="value.id">
+                        <li class="movie-list-block" v-for="value in item.data.hot">
                             <section class="image">
-                                <img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=70ccec74c495d143da76e3254bcbe53f/d1a20cf431adcbef44627e71a0af2edda3cc9f76.jpg"
+                                <img :src="value.img"
                                      :alt="value.nm"/>
                             </section>
 
                             <section class="description">
                                 <h2 class="title">
                                     {{value.nm}}
-                                    <span class="version">{{value.ver}}</span>
-
+                                    <!--<span class="version">{{value.ver}}</span>-->
                                 </h2>
-                                <span v-if="value.globalReleased===false" class="wish-count"><span>{{value.wish}}</span>想看</span>
-                                <span v-if="value.globalReleased===true" class="wish-count">分数{{value.sc}}</span>
+                                <span v-if="value.globalReleased===false" class="wish-count"><span>{{value.wish}}</span>人想看</span>
+                                <span v-if="value.globalReleased===true&&value.sc!==0" class="score">
+                                        猫眼分数
+                                    <span>{{value.sc}}</span>
+                                </span>
+                                <span v-if="value.sc===0">暂无分数</span>
                                 <span class="cast">{{value.desc}}</span>
                                 <span class="show-info">{{value.showInfo}}</span>
                             </section>
@@ -26,8 +29,6 @@
                                 <router-link class="pre-sale" v-if="value.globalReleased===false" to="/">预售
                                 </router-link>
                             </section>
-
-
                         </li>
                     </ul>
 
@@ -86,9 +87,9 @@
                     color white
                     border-radius 0.2rem
                     background $themeBgColor
-                    -webkit-box-shadow 10px 10px 13px -12px rgba(0,0,0,0.75)
-                    -moz-box-shadow 10px 10px 13px -12px rgba(0,0,0,0.75)
-                    box-shadow 10px 10px 13px -12px rgba(0,0,0,0.75)
+                    -webkit-box-shadow 10px 10px 13px -12px rgba(0, 0, 0, 0.75)
+                    -moz-box-shadow 10px 10px 13px -12px rgba(0, 0, 0, 0.75)
+                    box-shadow 10px 10px 13px -12px rgba(0, 0, 0, 0.75)
                 .on-sale
                     background $themeBgColor
                 .pre-sale
@@ -102,10 +103,15 @@
                 margin-bottom 0.67rem
             span
                 font-size 0.8rem
+                margin .1rem 0
             span.cast
                 white-space nowrap
                 text-overflow ellipsis
                 overflow hidden
+            span.score > span,
+            span.wish-count > span
+                color #ffb400
+                margin 0 0.2rem
 
 
 </style>
