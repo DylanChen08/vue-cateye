@@ -22,7 +22,9 @@
                                 <span class="show-info">{{value.showInfo}}</span>
                             </section>
                             <section class="ticket-purchase">
-                                <router-link to="/">购票</router-link>
+                                <router-link class="on-sale" v-if="value.globalReleased===true" to="/">购票</router-link>
+                                <router-link class="pre-sale" v-if="value.globalReleased===false" to="/">预售
+                                </router-link>
                             </section>
 
 
@@ -46,6 +48,7 @@
 </script>
 
 <style lang="stylus" scoped>
+    @import "../../../assets/css/lib/common.stylus"
     .movieReleased
         padding 0 1.25rem
         .movie-list-block
@@ -68,8 +71,29 @@
                 justify-items center
                 grid-column 3
                 grid-row auto
-            .ticket-purchase > a
-                display inline-block
+                margin-left 1rem
+                display flex
+                justify-content center
+                align-items center
+                a
+                    display flex
+                    justify-content center
+                    align-items center
+                    width 3rem
+                    height 1.5rem
+                    text-align center
+                    font-size 0.8rem
+                    color white
+                    border-radius 0.2rem
+                    background $themeBgColor
+                    -webkit-box-shadow 10px 10px 13px -12px rgba(0,0,0,0.75)
+                    -moz-box-shadow 10px 10px 13px -12px rgba(0,0,0,0.75)
+                    box-shadow 10px 10px 13px -12px rgba(0,0,0,0.75)
+                .on-sale
+                    background $themeBgColor
+                .pre-sale
+                    background $themeBgColorPrimary
+
         .description
             display flex
             flex-direction column
@@ -78,7 +102,10 @@
                 margin-bottom 0.67rem
             span
                 font-size 0.8rem
-
+            span.cast
+                white-space nowrap
+                text-overflow ellipsis
+                overflow hidden
 
 
 </style>

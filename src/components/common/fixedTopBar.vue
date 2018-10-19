@@ -7,8 +7,8 @@
                     CN
                 </section>
                 <section class="middle-title movies">
-                    <span @click="onHotShow">正在热映</span>
-                    <span @click="onPreShow">即将热映</span>
+                    <span class="hot-show" v-bind:class="[isActive1?'active':'xx']" @click="onHotShow">正在热映</span>
+                    <span class="pre-show" v-bind:class="[isActive2?'active':'xx']" @click="onPreShow">即将热映</span>
                 </section>
                 <section class="search-icon">xxx</section>
             </div>
@@ -48,7 +48,10 @@
         props: ['view'],
         data() {
             return {
-                val: ''
+                val: '',
+                isActive1: true,
+                isActive2: false
+
             }
         },
         created() {
@@ -57,9 +60,13 @@
         methods: {
             onHotShow() {
                 this.$emit('toHotShow', this.val)
+                this.isActive1 = true
+                this.isActive2 = false
             },
             onPreShow() {
                 this.$emit('toPreShow', this.val)
+                this.isActive1 = false
+                this.isActive2 = true
             }
         }
     }
@@ -102,7 +109,7 @@
                 margin 0 0.8rem
                 font-size 0.9375rem
                 padding-bottom 1.06rem
-            .middle-title.movies span::after
+            .middle-title.movies span.hot-show.active::after
                 content ''
                 position absolute
                 bottom 0
@@ -110,6 +117,16 @@
                 width 1.5rem
                 height 0.1rem
                 background white
+                color white
+            .middle-title.movies span.pre-show.active::after
+                content ''
+                position absolute
+                bottom 0
+                left 36%
+                width 1.5rem
+                height 0.1rem
+                background white
+                color white
             .search-icon
                 border 1px solid red
                 grid-row 1

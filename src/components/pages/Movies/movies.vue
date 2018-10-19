@@ -50,8 +50,9 @@
 
 <style lang="stylus" scoped>
     @import "../../../assets/css/lib/animate.css";
-    .xxx9
+    #movies
         position absolute
         top 10%;
         left 0
+        padding 0 0 6rem 0
 </style>
