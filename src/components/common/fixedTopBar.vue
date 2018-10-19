@@ -109,6 +109,11 @@
                 margin 0 0.8rem
                 font-size 0.9375rem
                 padding-bottom 1.06rem
+                color #f1b3b1
+                transition all .2s
+            .middle-title.movies span.hot-show.active,
+            .middle-title.movies span.pre-show.active
+                color white
             .middle-title.movies span.hot-show.active::after
                 content ''
                 position absolute
@@ -117,7 +122,6 @@
                 width 1.5rem
                 height 0.1rem
                 background white
-                color white
             .middle-title.movies span.pre-show.active::after
                 content ''
                 position absolute
@@ -126,7 +130,6 @@
                 width 1.5rem
                 height 0.1rem
                 background white
-                color white
             .search-icon
                 border 1px solid red
                 grid-row 1
