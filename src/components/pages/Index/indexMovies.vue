@@ -60,10 +60,18 @@
 </template>
 
 <script>
-
+    import axios from 'axios'
+    window.axios = axios ;
 
     export default {
         name: "indexMovies",
+        created(){
+            axios.get('http://127.0.0.1:3000/hello').then((res)=>{
+                console.log(res)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        },
 
     }
 </script>

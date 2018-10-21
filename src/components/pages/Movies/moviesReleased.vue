@@ -54,7 +54,7 @@
         padding 0 1.25rem
         .movie-list-block
             display grid
-            grid auto / 5.6rem 11rem auto
+            grid auto / 5.6rem 12rem auto
             padding 0.92rem 0
             .image
                 grid-column 1
