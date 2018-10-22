@@ -6,7 +6,9 @@
                 <router-link to="/pages/Movies/moviesReleased"> 全部52部>></router-link>
             </section>
             <ul v-for="item in indexList" :key="item.id">
-                <li class="hide-scroll-bar" v-for="value in item">
+
+                <li v-for="value in item">
+                   <!--{{value}}-->
                     <ul class="hot-show-block-wrapper">
                         <li class="hot-show-block" v-for="data in value.onshow">
                             <img :src="data.url" :alt="data.title"/>
@@ -22,8 +24,7 @@
                                 </div>
                             </section>
                             <h3 class="title">{{data.title}}</h3>
-                            <router-link class="buy" to="/" @click=>购票</router-link>
-
+                            <router-link class="buy" to="/">购票</router-link>
                         </li>
                     </ul>
                 </li>
@@ -34,7 +35,7 @@
                 <span>即将上映</span>
                 <router-link to="/pages/Movies/moviesReleased"> 全部191部>></router-link>
             </section>
-            <ul v-for="item in $store.state.pageIndex" :key="item.id">
+            <ul v-for="item in indexList" :key="item.id">
                 <li class="hide-scroll-bar" v-for="value in item">
                     <ul class="pre-show-block-wrapper">
                         <li class="pre-show-block" v-for="data in value.preview">
@@ -57,7 +58,6 @@
                 </li>
             </ul>
         </div>
-        <button @click="test">xxx</button>
     </div>
 
 </template>
@@ -70,7 +70,7 @@
     // console.log('xxx')
     // window.getData = getData;
     // console.log('xxx2')
-   import {mapGetters} from 'vuex'
+    import {mapGetters} from 'vuex'
 
     export default {
         name: "indexMovies",
@@ -79,13 +79,15 @@
                 indexList: 'xxx'
             }
         },
-        computed: {},
-        methods: {
-            ...mapGetters(['getIndex']),
-            test() {
-                console.log(this.getIndex)
-            }
-        }
+        mounted() {
+            console.log(1129876)
+            this.getIndex.then(res => {
+                console.log(res)
+                this.indexList = res
+            })
+        },
+        computed: {...mapGetters(['getIndex'])},
+
 
     }
 </script>
