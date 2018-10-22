@@ -5,7 +5,7 @@
                 <span>正在热映</span>
                 <router-link to="/pages/Movies/moviesReleased"> 全部52部>></router-link>
             </section>
-            <ul v-for="item in $store.state.pageIndex" :key="item.id">
+            <ul v-for="item in indexList" :key="item.id">
                 <li class="hide-scroll-bar" v-for="value in item">
                     <ul class="hot-show-block-wrapper">
                         <li class="hot-show-block" v-for="data in value.onshow">
@@ -22,7 +22,8 @@
                                 </div>
                             </section>
                             <h3 class="title">{{data.title}}</h3>
-                            <router-link class="buy" to="/">购票</router-link>
+                            <router-link class="buy" to="/" @click=>购票</router-link>
+
                         </li>
                     </ul>
                 </li>
@@ -56,22 +57,35 @@
                 </li>
             </ul>
         </div>
+        <button @click="test">xxx</button>
     </div>
+
 </template>
 
 <script>
-    import axios from 'axios'
-    window.axios = axios ;
+    // import request from '../../../helpers/request'
+    // import getData from '../../../api/getData'
+
+    // window.request = request;
+    // console.log('xxx')
+    // window.getData = getData;
+    // console.log('xxx2')
+   import {mapGetters} from 'vuex'
 
     export default {
         name: "indexMovies",
-        created(){
-            axios.get('http://127.0.0.1:3000/hello').then((res)=>{
-                console.log(res)
-            }).catch((err)=>{
-                console.log(err)
-            })
+        data() {
+            return {
+                indexList: 'xxx'
+            }
         },
+        computed: {},
+        methods: {
+            ...mapGetters(['getIndex']),
+            test() {
+                console.log(this.getIndex)
+            }
+        }
 
     }
 </script>
@@ -81,9 +95,9 @@
     #indexMovies
         padding 0.88rem 0.88rem 10rem
         border 1px solid red
-        .hot-show,.pre-show
+        .hot-show, .pre-show
             margin-top .6rem
-        section.hot-show-title,section.pre-show-title
+        section.hot-show-title, section.pre-show-title
             display flex
             justify-content space-between
             span

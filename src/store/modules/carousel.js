@@ -1,4 +1,4 @@
-console.log(5)
+
 //示例数据
 const a = [{
     "adId": 10304,
@@ -48,7 +48,6 @@ const a = [{
 const state = {
     carousel: a   //测试数据
 }
-console.log(6)
 console.log(state)
 export default {
     state,

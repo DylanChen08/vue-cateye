@@ -1,7 +1,7 @@
 import request from '../helpers/request'
 
 const URL = {
-    INDEX_MOVIES: 'index/movies',
+    INDEX_MOVIES: '/index/movies',
     INDEX_TV: 'index/tv',
     INDEX_SHOWS: 'index/shows',
     INDEX_BOOKS: 'index/books',

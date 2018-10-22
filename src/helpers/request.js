@@ -13,7 +13,7 @@ axios.defaults.withCredentials = true
 export default function request(url, type = "GET", data = {}) {
     return new Promise((resolve, reject) => {
         let options = {
-            url:url,
+            url: url,
             method: type
         }
         if (type.toLowerCase() === "get") {
@@ -24,11 +24,11 @@ export default function request(url, type = "GET", data = {}) {
 
         axios(options).then(res => {
             console.log(res)
-            if (res.data.status === 'ok') {
+            if (res.status === 200) {
                 resolve(res.data)
                 Message.success(res.data.msg)
             } else {
-                reject(res)
+                reject(res.data)
                 Message.error(res.data.msg)
             }
         }).catch(() => {
