@@ -2,7 +2,7 @@
     <div class="movieReleased">
         <section class="movie-description">
             <ul>
-                <li v-for="item in $store.state.movieReleasedList">
+                <li v-for="item in moviesReleasedList">
                     <ul>
                         <li class="movie-list-block" v-for="value in item.data.hot">
                             <section class="image">
@@ -34,7 +34,6 @@
 
                 </li>
             </ul>
-
         </section>
         <section class="btn-buy">
             <router-link to="/"></router-link>
@@ -43,8 +42,33 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
+
+    // import request from '../../../helpers/request'
+    // import getData from '../../../api/getData'
+    //
+    // window.request = request;
+    // console.log('xxx')
+    // window.getData = getData;
+    // console.log('xxx2')
+
     export default {
-        name: "moviesReleased"
+        name: "moviesReleased",
+        data() {
+            return {
+                moviesReleasedList: ''
+            }
+        },
+        computed: {
+            ...mapGetters(['getMoviesReleased'])
+        },
+        mounted(){
+            this.getMoviesReleased.then(res => {
+                console.log(999)
+                console.log(res)
+                this.moviesReleasedList = res
+            })
+        }
     }
 </script>
 

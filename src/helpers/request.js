@@ -23,7 +23,7 @@ export default function request(url, type = "GET", data = {}) {
         }
 
         axios(options).then(res => {
-            console.log(res)
+            console.log('res',res)
             if (res.status === 200) {
                 resolve(res.data)
                 Message.success(res.data.msg)

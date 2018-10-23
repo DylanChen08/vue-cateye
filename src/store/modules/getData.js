@@ -1,12 +1,14 @@
 import getData from '../../api/getData'
 //666
-const state = {
-
-}
+const state = {}
 const getters = {
     async getIndex() {
-        console.log(3349684)
         let res = await getData.getIndexMoviesList()
+        return res
+    },
+    async getMoviesReleased() {
+        console.log(3349684)
+        let res = await getData.getMoviesReleasedList()
         console.log(3349685)
         console.log(22222, res)
         return res
@@ -33,12 +35,8 @@ const getters = {
     //     })
     // }
 }
-const mutations = {
-
-}
-const actions = {
-
-}
+const mutations = {}
+const actions = {}
 
 export default {
     state,
