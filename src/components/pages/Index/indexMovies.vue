@@ -8,7 +8,7 @@
             <ul v-for="item in indexList" :key="item.id">
 
                 <li v-for="value in item">
-                   <!--{{value}}-->
+                    <!--{{value}}-->
                     <ul class="hot-show-block-wrapper">
                         <li class="hot-show-block" v-for="data in value.onshow">
                             <img :src="data.url" :alt="data.title"/>
@@ -79,14 +79,14 @@
                 indexList: 'xxx'
             }
         },
+        computed: {...mapGetters(['getIndex'])},
         mounted() {
             console.log(1129876)
             this.getIndex.then(res => {
                 console.log(res)
                 this.indexList = res
-            })
+            }).catch(e=>{console.log(e)})
         },
-        computed: {...mapGetters(['getIndex'])},
 
 
     }
