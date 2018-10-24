@@ -9,7 +9,6 @@
                                 <img :src="value.img"
                                      :alt="value.nm"/>
                             </section>
-
                             <section class="description">
                                 <h2 class="title">
                                     {{value.nm}}
@@ -62,7 +61,7 @@
         computed: {
             ...mapGetters(['getMoviesReleased'])
         },
-        mounted(){
+        mounted() {
             this.getMoviesReleased.then(res => {
                 console.log(999)
                 console.log(res)
@@ -78,7 +77,7 @@
         padding 0 1.25rem
         .movie-list-block
             display grid
-            grid auto / 5.6rem 12rem auto
+            grid auto / 5.6rem 10rem auto
             padding 0.92rem 0
             .image
                 grid-column 1
@@ -125,6 +124,9 @@
             h2.title
                 font-size 1rem
                 margin-bottom 0.67rem
+                overflow hidden
+                white-space nowrap
+                text-overflow ellipsis
             span
                 font-size 0.8rem
                 margin .1rem 0
