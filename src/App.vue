@@ -7,7 +7,7 @@
             </keep-alive>
         </main>
         <!--底部导航组件-->
-        <FooterNav></FooterNav>
+        <FooterNav v-show="$route.meta.showBottomBar"></FooterNav>
     </div>
 </template>
 <script>

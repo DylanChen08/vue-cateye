@@ -18,13 +18,14 @@ const routes = [
     },
     {
         path: '/test',
-        name: 'cinemas',
+        name: 'test',
 
         component: () => import(/* webpackChunkName: "about" */ '../components/common/test.vue')
     },
     {
         path: '/pages/index',
         name: 'index',
+        meta: {showBottomBar: true},
         component: () => import(/* webpackChunkName: "about" */ '../components/pages/Index/index.vue'),
         children: [
             {
@@ -53,12 +54,13 @@ const routes = [
     {
         path: '/pages/cinemas',
         name: 'cinemas',
-
+        meta: {showBottomBar: true},
         component: () => import(/* webpackChunkName: "about" */ '../components/pages/Cinemas/cinemas.vue')
     },
     {
         path: '/pages/movies',
         name: 'movies',
+        meta: {showBottomBar: true},
         component: () => import(/* webpackChunkName: "about" */ '../components/pages/Movies/movies.vue'),
         children: [
             {
@@ -73,15 +75,20 @@ const routes = [
         ]
     },
     {
+        path: '/pages/movies/moviesDetails',
+        name: 'moviesDetails',
+        component: () => import(/* webpackChunkName: "about" */ '../components/pages/Movies/moviesDetails.vue'),
+    },
+    {
         path: '/pages/personal-center',
         name: 'personal-center',
-
+        meta: {showBottomBar: true},
         component: () => import(/* webpackChunkName: "about" */ '../components/pages/PersonalCenter/personalCenter.vue')
     },
     {
         path: '/pages/shows',
         name: 'shows',
-
+        meta: {showBottomBar: true},
         component: () => import(/* webpackChunkName: "about" */ '../components/pages/Shows/shows.vue')
     },
 

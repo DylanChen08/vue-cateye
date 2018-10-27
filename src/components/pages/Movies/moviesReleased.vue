@@ -24,8 +24,8 @@
                                 <span class="show-info">{{value.showInfo}}</span>
                             </section>
                             <section class="ticket-purchase">
-                                <router-link class="on-sale" v-if="value.globalReleased===true" to="/">购票</router-link>
-                                <router-link class="pre-sale" v-if="value.globalReleased===false" to="/">预售
+                                <router-link class="on-sale" v-if="value.globalReleased===true" to="/movies/moviesDetails">购票</router-link>
+                                <router-link class="pre-sale" v-if="value.globalReleased===false" to="/movies/moviesDetails">预售
                                 </router-link>
                             </section>
                         </li>
