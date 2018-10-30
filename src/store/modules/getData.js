@@ -2,15 +2,17 @@ import getData from '../../api/getData'
 //666
 const state = {}
 const getters = {
+    //获取首页的数据
     async getIndex() {
         let res = await getData.getIndexMoviesList()
         return res
     },
+    //获取正在上映电影的数据
     async getMoviesReleased() {
-        console.log(3349684)
+        // console.log(3349684)
         let res = await getData.getMoviesReleasedList()
-        console.log(3349685)
-        console.log(22222, res)
+        // console.log(3349685)
+        // console.log(22222, res)
         return res
     },
     // getIndexTvList() {

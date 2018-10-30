@@ -11,6 +11,7 @@ const routes = [
         //设置默认路由，一开始默认进入主页
         path: '*',
         name: '',
+        meta: {showBottomBar: true},
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
@@ -75,7 +76,7 @@ const routes = [
         ]
     },
     {
-        path: '/pages/movies/moviesDetails',
+        path: '/pages/movies/moviesDetails/:movieId',
         name: 'moviesDetails',
         component: () => import(/* webpackChunkName: "about" */ '../components/pages/Movies/moviesDetails.vue'),
     },

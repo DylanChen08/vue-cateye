@@ -2,36 +2,33 @@
     <div class="movieReleased">
         <section class="movie-description">
             <ul>
-                <li v-for="item in moviesReleasedList">
-                    <ul>
-                        <li class="movie-list-block" v-for="value in item.data.hot">
-                            <section class="image">
-                                <img :src="value.img"
-                                     :alt="value.nm"/>
-                            </section>
-                            <section class="description">
-                                <h2 class="title">
-                                    {{value.nm}}
-                                    <!--<span class="version">{{value.ver}}</span>-->
-                                </h2>
-                                <span v-if="value.globalReleased===false" class="wish-count"><span>{{value.wish}}</span>人想看</span>
-                                <span v-if="value.globalReleased===true&&value.sc!==0" class="score">
+                <router-link class="movie-list-block" v-for="value in moviesReleasedList"
+                             :to="`/pages/movies/moviesDetails/${value.id}`" tag="li">
+                    <section class="image">
+                        <img :src="value.img"
+                             :alt="value.nm"/>
+                    </section>
+                    <section class="description">
+                        <h2 class="title">
+                            {{value.nm}}
+                            <!--<span class="version">{{value.ver}}</span>-->
+                        </h2>
+                        <span v-if="value.globalReleased===false"
+                              class="wish-count"><span>{{value.wish}}</span>人想看</span>
+                        <span v-if="value.globalReleased===true&&value.sc!==0" class="score">
                                         猫眼分数
                                     <span>{{value.sc}}</span>
                                 </span>
-                                <span v-if="value.sc===0">暂无分数</span>
-                                <span class="cast">{{value.desc}}</span>
-                                <span class="show-info">{{value.showInfo}}</span>
-                            </section>
-                            <section class="ticket-purchase">
-                                <router-link class="on-sale" v-if="value.globalReleased===true" to="/movies/moviesDetails">购票</router-link>
-                                <router-link class="pre-sale" v-if="value.globalReleased===false" to="/movies/moviesDetails">预售
-                                </router-link>
-                            </section>
-                        </li>
-                    </ul>
-
-                </li>
+                        <span v-if="value.sc===0">暂无分数</span>
+                        <span class="cast">{{value.desc}}</span>
+                        <span class="show-info">{{value.showInfo}}</span>
+                    </section>
+                    <section class="ticket-purchase">
+                        <router-link class="on-sale" v-if="value.globalReleased===true" to="/">购票</router-link>
+                        <router-link class="pre-sale" v-if="value.globalReleased===false" to="/">预售
+                        </router-link>
+                    </section>
+                </router-link>
             </ul>
         </section>
         <section class="btn-buy">
@@ -65,7 +62,7 @@
             this.getMoviesReleased.then(res => {
                 console.log(999)
                 console.log(res)
-                this.moviesReleasedList = res
+                this.moviesReleasedList = res.data
             })
         }
     }
