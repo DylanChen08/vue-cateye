@@ -2,9 +2,7 @@
     <div id="app">
         <!--主体-->
         <main id="main">
-            <keep-alive>
-                <router-view></router-view>
-            </keep-alive>
+            <router-view></router-view>
         </main>
         <!--底部导航组件-->
         <FooterNav v-show="$route.meta.showBottomBar"></FooterNav>

@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import {mapActions} from 'vuex'
 
     // import request from '../../../helpers/request'
     // import getData from '../../../api/getData'
@@ -56,7 +56,7 @@
             }
         },
         computed: {
-            ...mapGetters(['getMoviesReleased'])
+            ...mapActions(['getMoviesReleased'])
         },
         mounted() {
             this.getMoviesReleased.then(res => {

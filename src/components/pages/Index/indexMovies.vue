@@ -71,7 +71,7 @@
     // console.log('xxx')
     // window.getData = getData;
     // console.log('xxx2')
-    import {mapGetters} from 'vuex'
+    import {mapActions} from 'vuex'
 
     export default {
         name: "indexMovies",
@@ -80,7 +80,7 @@
                 indexList: 'xxx'
             }
         },
-        computed: {...mapGetters(['getIndex'])},
+        computed: {...mapActions(['getIndex'])},
         mounted() {
             console.log(1129876)
             this.getIndex.then(res => {

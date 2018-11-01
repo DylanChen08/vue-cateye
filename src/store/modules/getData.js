@@ -1,7 +1,18 @@
 import getData from '../../api/getData'
 //666
-const state = {}
+const state = {
+    movieId: null
+}
 const getters = {
+    movieId: state => state.movieId,
+}
+const mutations = {
+    setMovieId(state, payload) {
+        state.movieId = payload.movieId
+    },
+
+}
+const actions = {
     //获取首页的数据
     async getIndex() {
         let res = await getData.getIndexMoviesList()
@@ -15,6 +26,14 @@ const getters = {
         // console.log(22222, res)
         return res
     },
+    async getMovieId({commit},{movieId}){
+        console.log(11256)
+        let res = await getData.getMoviesDetails({movieId})
+        commit('setMovieId',{movieId})
+        return res
+
+
+    }
     // getIndexTvList() {
     //     return getData.getIndexTvList().then(() => {
     //     }).catch((err) => {
@@ -37,8 +56,6 @@ const getters = {
     //     })
     // }
 }
-const mutations = {}
-const actions = {}
 
 export default {
     state,
