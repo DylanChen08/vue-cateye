@@ -1,5 +1,6 @@
 <template>
     <div class="movies-details">
+        <!--背景遮罩-->
         <div class="filter-bg"><img :src="moviesDetails.img" alt=""></div>
         <div class="movies-details-topBar">
             <template>
@@ -48,11 +49,30 @@
                 </ul>
             </div>
             <section class="rate-block">
-                <div class="band"></div>
+                <div class="band">xxx</div>
                 <div class="rate-percentage">
-                    <el-progress :percentage="0"></el-progress>
-                    <el-progress :percentage="0"></el-progress>
-                    <el-progress :percentage="0"></el-progress>
+                    <div class="rate-percentage-wrapper">
+                        <div class="title">9-10分</div>
+                        <div class="progress-bar">
+                            <el-progress :percentage="100"></el-progress>
+                        </div>
+                    </div>
+                    <div class="rate-percentage-wrapper">
+                        <div class="title">9-10分</div>
+                        <div class="progress-bar">
+                            <el-progress :percentage="100"></el-progress>
+                        </div>
+                    </div>
+                    <div class="rate-percentage-wrapper">
+                        <div class="title">9-10分</div>
+                        <div class="progress-bar">
+                            <el-progress :percentage="100"></el-progress>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="rate-star">
+
                 </div>
             </section>
         </section>
@@ -213,6 +233,24 @@
                     color #fc0
                     font-size 1.2rem
         .rate-block
+            display flex
+            flex-direction row
             width 100%
             border 1px solid red
+            .band
+                border 1px solid red
+                width 12%
+            .rate-percentage
+                border 1px solid red
+                width 60%
+            .rate-percentage-wrapper
+                display flex
+                flex-direction row
+                .title
+                    width 30%
+                .progress-bar
+                    width 70%
+            .rate-star
+                width 26%
+
 </style>
