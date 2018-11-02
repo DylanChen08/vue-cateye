@@ -18,22 +18,27 @@ const actions = {
         let res = await getData.getIndexMoviesList()
         return res
     },
-    //获取正在上映电影的数据
-    async getMoviesReleased() {
-        // console.log(3349684)
-        let res = await getData.getMoviesReleasedList()
-        // console.log(3349685)
-        // console.log(22222, res)
+    async getCarousel() {
+        let res = await getData.getCarousel()
         return res
     },
+    //获取正在上映电影的数据
+    async getMoviesReleased() {
+        let res = await getData.getMoviesReleasedList()
+        return res
+    },
+    //获取指定电影的id
     async getMovieId({commit},{movieId}){
         console.log(11256)
         let res = await getData.getMoviesDetails({movieId})
         commit('setMovieId',{movieId})
         return res
-
-
-    }
+    },
+    //获取未上映电影的数据
+    async getMoviesPreview() {
+        let res = await getData.getMoviesPreviewList()
+        return res
+    },
     // getIndexTvList() {
     //     return getData.getIndexTvList().then(() => {
     //     }).catch((err) => {

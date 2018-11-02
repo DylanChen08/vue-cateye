@@ -1,58 +1,62 @@
 <template>
     <div id="indexMovies">
+        <!--正在上映-->
         <div class="hot-show">
             <section class="hot-show-title">
                 <span>正在热映</span>
-                <router-link to="/pages/Movies/moviesReleased"> 全部52部>></router-link>
+                <router-link to="/pages/Movies/moviesReleased"> 全部{{releasedList.length}}部>></router-link>
             </section>
-            <ul v-for="item in indexList" :key="item.id">
-
-                <li v-for="value in item">
-                    <!--{{value}}-->
-                    <ul class="hot-show-block-wrapper">
-                        <li class="hot-show-block" v-for="data in value.onshow">
-                            <img :src="data.url" :alt="data.title"/>
-                            <section class="hot-show-block-mask">
-                                <div class="tags-head">
-                                    <span v-if="data.doubleDimension" class="doubleDimension">2D IMAX</span>
-                                    <span v-if="data.tripleDimension" class="tripleDimension">3D</span>
-                                    <span class="cgs">CGS</span>
-                                </div>
-                                <div class="tags-end">
-                                    <span v-if="data.showRate" class="rate">猫眼评分{{data.score}}</span>
-                                    <span v-if="!data.showRate" class="view-count">{{data.viewCount}}人想看</span>
-                                </div>
-                            </section>
-                            <h3 class="title">{{data.title}}</h3>
-                            <router-link class="buy" to="/">购票</router-link>
-                        </li>
-                    </ul>
+            <ul class="hot-show-block-wrapper">
+                <li class="hot-show-block" v-for="item in releasedList" :key="item.id">
+                    <img :src="item.img" :alt="item.title"/>
+                    <router-link :to="`/pages/movies/moviesDetails/${item.id}`" class="hot-show-block-mask"
+                                 tag="section">
+                        <div class="tags-head">
+                            <span class="version">
+                            {{item.ver.slice(0,8).replace('/',' ')}}
+                            </span>
+                            <span class="version">
+                            {{item.ver.slice(10,15).replace('/','')}}
+                        </span>
+                        </div>
+                        <div class="tags-end">
+                            <span v-if="item.globalReleased" class="rate">猫眼评分{{item.sc}}</span>
+                            <span v-if="!item.globalReleased" class="view-count">{{item.wish}}人想看</span>
+                        </div>
+                    </router-link>
+                    <h3 class="title">{{item.title}}</h3>
+                    <router-link class="buy" to="/">购票</router-link>
                 </li>
             </ul>
         </div>
+        <!--即将上映-->
         <div class="pre-show">
             <section class="pre-show-title">
                 <span>即将上映</span>
-                <router-link to="/pages/Movies/moviesReleased"> 全部191部>></router-link>
+                <router-link to="/pages/Movies/moviesReleased"> 全部{{previewList.length}}部>></router-link>
             </section>
-            <ul v-for="item in indexList" :key="item.id">
-                <li class="hide-scroll-bar" v-for="value in item">
+            <ul>
+                <li class="hide-scroll-bar">
                     <ul class="pre-show-block-wrapper">
-                        <li class="pre-show-block" v-for="data in value.preview">
-                            <img :src="data.url" :alt="data.title"/>
-                            <section class="pre-show-block-mask">
+                        <li class="pre-show-block" v-for="value in previewList" :key="value.id">
+                            <img :src="value.img" :alt="value.title"/>
+                            <router-link :to="`/pages/movies/moviesDetails/${value.id}`" class="hot-show-block-mask"
+                                         tag="section">
                                 <div class="tags-head">
-                                    <span v-if="data.doubleDimension" class="doubleDimension">2D IMAX</span>
-                                    <span v-if="data.tripleDimension" class="tripleDimension">3D</span>
-                                    <span class="cgs">CGS</span>
+                                    <span class="version">
+                                    {{value.ver.slice(0,8).replace('/',' ')}}
+                                    </span>
+                                    <span class="version">
+                                    {{value.ver.slice(10,15).replace('/','')}}
+                                    </span>
                                 </div>
                                 <div class="tags-end">
-                                    <span v-if="data.showRate" class="rate">猫眼评分{{data.score}}</span>
-                                    <span v-if="!data.showRate" class="view-count">{{data.viewCount}}人想看</span>
+                                    <span v-if="value.showRate" class="rate">猫眼评分{{value.score}}</span>
+                                    <span v-if="!value.showRate" class="view-count">{{value.viewCount}}人想看</span>
                                 </div>
-                            </section>
-                            <h3 class="title">{{data.title}}</h3>
-                            <h5>{{convertDate(data.date)}}</h5>
+                            </router-link>
+                            <h3 class="title">{{value.title}}</h3>
+                            <h5>{{convertDate(value.pubDate)}}</h5>
                         </li>
                     </ul>
                 </li>
@@ -64,29 +68,33 @@
 </template>
 
 <script>
-    // import request from '../../../helpers/request'
-    // import getData from '../../../api/getData'
-
-    // window.request = request;
-    // console.log('xxx')
-    // window.getData = getData;
-    // console.log('xxx2')
     import {mapActions} from 'vuex'
 
     export default {
         name: "indexMovies",
         data() {
             return {
-                indexList: 'xxx'
+                releasedList: '',
+                previewList: '',
+                tags: '',
             }
         },
-        computed: {...mapActions(['getIndex'])},
+        computed: {...mapActions(['getMoviesReleased', 'getMoviesPreview'])},
         mounted() {
             console.log(1129876)
-            this.getIndex.then(res => {
+            this.getMoviesReleased.then(res => {
                 console.log(res)
-                this.indexList = res
-            }).catch(e=>{console.log(e)})
+                this.releasedList = res.data
+            }).catch(e => {
+                console.log(e)
+            })
+
+            this.getMoviesPreview.then(res => {
+                console.log(res)
+                this.previewList = res.data
+            }).catch(e => {
+                console.log(e)
+            })
         },
 
 

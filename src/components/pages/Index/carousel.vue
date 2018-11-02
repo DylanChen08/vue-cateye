@@ -1,17 +1,15 @@
 <template>
     <div id="swiper">
-        <Swiper v-if="true" v-for="(item,index) in $store.state.carousel" :key="index">
-            <Slide v-for="(value,index2) in item">
-                <a href=""><img width="100%" height="100px" :src="value.image" alt=""></a>
+        <Swiper v-if="true">
+            <Slide v-for="(item,index) in carouselList" :key="index">
+                <a href=""><img width="100%" height="100px" :src="item.image" alt=""></a>
             </Slide>
         </Swiper>
     </div>
-
 </template>
 
 <script>
-
-
+    import {mapActions} from 'vuex'
     import {Swiper, Slide} from 'vue-swiper-component';
 
     export default {
@@ -21,10 +19,24 @@
             Slide
         },
         data() {
-            return {}
+            return {
+                carouselList: ''
+            }
 
         },
-        methods: {}
+        methods: {},
+        computed: {
+            ...mapActions(['getCarousel'])
+        },
+        mounted() {
+            console.log('xxx2')
+            this.getCarousel.then(res => {
+                console.log(685)
+                console.log(res)
+                this.carouselList = res
+            })
+        }
+
     }
 </script>
 

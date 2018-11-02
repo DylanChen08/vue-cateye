@@ -15,16 +15,18 @@
 </template>
 
 <script>
+
     import carousel from './carousel'
     import indexMovies from './indexMovies'
+
     export default {
         name: "index",
-        data(){
-            return{
+        data() {
+            return {
                 activeName: 'first'
             }
         },
-        components:{
+        components: {
             carousel,
             indexMovies
         },
@@ -32,7 +34,8 @@
             handleClick(tab, event) {
                 console.log(tab, event);
             }
-        }
+        },
+
     }
 </script>
 

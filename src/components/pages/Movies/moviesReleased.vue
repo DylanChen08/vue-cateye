@@ -40,14 +40,6 @@
 <script>
     import {mapActions} from 'vuex'
 
-    // import request from '../../../helpers/request'
-    // import getData from '../../../api/getData'
-    //
-    // window.request = request;
-    // console.log('xxx')
-    // window.getData = getData;
-    // console.log('xxx2')
-
     export default {
         name: "moviesReleased",
         data() {
