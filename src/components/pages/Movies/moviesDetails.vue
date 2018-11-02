@@ -48,31 +48,52 @@
                     <li class="wish-count"><span class="count">{{moviesDetails.wish}}</span>人想看</li>
                 </ul>
             </div>
-            <section class="rate-block">
-                <div class="band">xxx</div>
+            <section class="rate-block" v-show="score!==0">
+                <div class="band">
+                    <figure>
+                        <img src="http://maoyan.com/favicon.ico" width="30" height="30" alt="xxx">
+                        <figcaption>
+                            口碑
+                        </figcaption>
+                    </figure>
+                </div>
                 <div class="rate-percentage">
                     <div class="rate-percentage-wrapper">
                         <div class="title">9-10分</div>
                         <div class="progress-bar">
-                            <el-progress :percentage="100"></el-progress>
+                            <el-progress :percentage="50" color="rgb(255,187,41)"></el-progress>
                         </div>
                     </div>
                     <div class="rate-percentage-wrapper">
                         <div class="title">9-10分</div>
                         <div class="progress-bar">
-                            <el-progress :percentage="100"></el-progress>
+                            <el-progress :percentage="100" color="rgb(255,187,41)"></el-progress>
                         </div>
                     </div>
                     <div class="rate-percentage-wrapper">
                         <div class="title">9-10分</div>
                         <div class="progress-bar">
-                            <el-progress :percentage="100"></el-progress>
+                            <el-progress :percentage="100" color="rgb(255,187,41)"></el-progress>
                         </div>
                     </div>
 
                 </div>
                 <div class="rate-star">
-
+                    <span class="title">猫眼评分</span>
+                    <span class="score-star">
+                       <span class="star">
+                            <el-rate
+                                    v-model="score"
+                                    disabled
+                                    show-score
+                                    text-color="#ff9900"
+                                    score-template="{value}">
+                        </el-rate>
+                       </span>
+                    </span>
+                    <span class="comment-count">
+                      100人
+                    </span>
                 </div>
             </section>
         </section>
@@ -88,7 +109,8 @@
         data() {
             return {
                 moviesDetails: '',
-                tags: ''
+                tags: '',
+                score: 8
             }
         },
         created() {
@@ -106,6 +128,7 @@
                 console.log('res', res)
                 this.moviesDetails = res.data[0]
                 this.tags = this.moviesDetails.ver    //防止处理模板变量时,报错undefined
+                this.score = this.moviesDetails.sc
             })
         }
     }
@@ -124,8 +147,8 @@
             z-index -1
             border 1px solid green
             overflow hidden
-            filter blur(.8rem)
-            opacity .8
+            filter blur(1.5rem)
+            opacity .9
             img
                 width 100%
                 height 100%
@@ -187,7 +210,6 @@
                 color rgb(196, 198, 202)
         .details-block-layer
             margin-top 3rem
-
             display grid
             grid 8rem / 5.8rem auto
             color #fff
@@ -238,19 +260,46 @@
             width 100%
             border 1px solid red
             .band
-                border 1px solid red
+                display flex
+                justify-content center
+                align-items center
                 width 12%
-            .rate-percentage
+                color #fff
+                font-size .75rem
                 border 1px solid red
+                figcaption
+                    font-weight bold
+                    font-size 0.85rem
+                    letter-spacing .1rem
+            .rate-percentage
                 width 60%
+                padding-top .25rem
+                color #fff
+                font-size .75rem
+                border 1px solid red
             .rate-percentage-wrapper
                 display flex
                 flex-direction row
+                justify-content center
+                align-items center
+                margin .35rem .35rem .35rem .85rem
+                color #fff
                 .title
                     width 30%
                 .progress-bar
                     width 70%
             .rate-star
                 width 26%
-
+                display flex
+                flex-direction column
+                justify-content center
+                color #fff
+                padding .4rem .7rem
+                .title
+                    font-weight bold
+                    font-size .85rem
+                .comment-count
+                    font-size .75rem
+                    font-weight 300
+                    margin-top 1rem
 </style>

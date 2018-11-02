@@ -46,6 +46,17 @@ html
 .el-tabs__active-bar
   background $themeBgColor !important
 
+.el-progress__text
+  color #fff!important
+  font-size .75rem!important
+
+.el-rate__icon
+  font-size 8px!important
+  margin-right 6px
+  color #c0c4cc
+  -webkit-transition .3s
+  transition .3s
+
 .icon
   width 1em
   height 1em
