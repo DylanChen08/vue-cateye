@@ -6,7 +6,6 @@ Vue.use(Router)
 
 const routes = [
 
-
     {
         //设置默认路由，一开始默认进入主页
         path: '*',
@@ -15,40 +14,40 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../components/pages/Index/index.vue')
+        component: () => import( '../components/pages/Index/index.vue')
     },
     {
         path: '/test',
         name: 'test',
 
-        component: () => import(/* webpackChunkName: "about" */ '../components/common/test.vue')
+        component: () => import( '../components/common/test.vue')
     },
     {
         path: '/pages/index',
         name: 'index',
         meta: {showBottomBar: true},
-        component: () => import(/* webpackChunkName: "about" */ '../components/pages/Index/index.vue'),
+        component: () => import( '../components/pages/Index/index.vue'),
         children: [
             {
                 path: '/pages/index/carousel',
                 name: 'carousel',
-                component: () => import(/* webpackChunkName: "about" */ '../components/pages/Index/carousel.vue'),
+                component: () => import( '../components/pages/Index/carousel.vue'),
             }, {
                 path: '/pages/index/indexBooks',
                 name: 'indexBooks',
-                component: () => import(/* webpackChunkName: "about" */ '../components/pages/Index/indexBooks.vue'),
+                component: () => import( '../components/pages/Index/indexBooks.vue'),
             }, {
                 path: '/pages/index/indexMovies',
                 name: 'indexMovies',
-                component: () => import(/* webpackChunkName: "about" */ '../components/pages/Index/indexMovies.vue'),
+                component: () => import( '../components/pages/Index/indexMovies.vue'),
             }, {
                 path: '/pages/index/indexTvSeries',
                 name: 'indexTvSeries',
-                component: () => import(/* webpackChunkName: "about" */ '../components/pages/Index/indexTvSeries.vue'),
+                component: () => import( '../components/pages/Index/indexTvSeries.vue'),
             }, {
                 path: '/pages/index/indexVarietyShows',
                 name: 'indexVarietyShows',
-                component: () => import(/* webpackChunkName: "about" */ '../components/pages/Index/indexVarietyShows.vue'),
+                component: () => import( '../components/pages/Index/indexVarietyShows.vue'),
             },
         ]
     },
@@ -56,45 +55,51 @@ const routes = [
         path: '/pages/cinemas',
         name: 'cinemas',
         meta: {showBottomBar: true},
-        component: () => import(/* webpackChunkName: "about" */ '../components/pages/Cinemas/cinemas.vue')
+        component: () => import( '../components/pages/Cinemas/cinemas.vue')
     },
     {
         path: '/pages/movies',
         name: 'movies',
         meta: {showBottomBar: true},
-        component: () => import(/* webpackChunkName: "about" */ '../components/pages/Movies/movies.vue'),
+        component: () => import( '../components/pages/Movies/movies.vue'),
         children: [
             {
-                path: '/pages/movies/moviesPreShows',
+                path: '/pages/movies/moviePreShows',
                 name: 'moviesPreShows',
-                component: () => import(/* webpackChunkName: "about" */ '../components/pages/Movies/moviesPreShows.vue'),
+                meta: {showBottomBar: true},
+                component: () => import( '../components/pages/Movies/moviePreShows.vue'),
             }, {
-                path: '/pages/movies/moviesReleased',
+                path: '/pages/movies/movieReleased',
                 name: 'moviesReleased',
-                component: () => import(/* webpackChunkName: "about" */ '../components/pages/Movies/moviesReleased.vue'),
+                meta: {showBottomBar: true},
+                component: () => import( '../components/pages/Movies/movieReleased.vue'),
             },
         ]
     },
     {
-        path: '/pages/movies/moviesDetails/:movieId',
+        path: '/pages/movies/movieDetails/:movieId',
         name: 'moviesDetails',
-        component: () => import(/* webpackChunkName: "about" */ '../components/pages/Movies/moviesDetails.vue'),
+        component: () => import( '../components/pages/Movies/movieDetails.vue'),
     },
     {
         path: '/pages/personal-center',
         name: 'personal-center',
         meta: {showBottomBar: true},
-        component: () => import(/* webpackChunkName: "about" */ '../components/pages/PersonalCenter/personalCenter.vue')
+        component: () => import( '../components/pages/PersonalCenter/personalCenter.vue')
     },
     {
         path: '/pages/shows',
         name: 'shows',
         meta: {showBottomBar: true},
-        component: () => import(/* webpackChunkName: "about" */ '../components/pages/Shows/shows.vue')
+        component: () => import( '../components/pages/Shows/shows.vue')
+    },
+    {
+        path: '/pages/movies/comments/:movieId',
+        name: 'comments',
+        component: () => import( '../components/pages/Movies/movieShortComment.vue')
     },
 
 ]
-
 
 export default new Router({
     mode: 'history',

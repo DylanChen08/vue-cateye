@@ -4,12 +4,12 @@
         <div class="hot-show">
             <section class="hot-show-title">
                 <span>正在热映</span>
-                <router-link to="/pages/Movies/moviesReleased"> 全部{{releasedList.length}}部>></router-link>
+                <router-link to="/pages/movies/movieReleased"> 全部{{releasedList.length}}部>></router-link>
             </section>
             <ul class="hot-show-block-wrapper">
                 <li class="hot-show-block" v-for="item in releasedList" :key="item.id">
                     <img :src="item.img" :alt="item.title"/>
-                    <router-link :to="`/pages/movies/moviesDetails/${item.id}`" class="hot-show-block-mask"
+                    <router-link :to="`/pages/movies/movieDetails/${item.id}`" class="hot-show-block-mask"
                                  tag="section">
                         <div class="tags-head">
                             <span class="version">
@@ -33,14 +33,14 @@
         <div class="pre-show">
             <section class="pre-show-title">
                 <span>即将上映</span>
-                <router-link to="/pages/Movies/moviesReleased"> 全部{{previewList.length}}部>></router-link>
+                <router-link to="/pages/movies/moviePreShows"> 全部{{previewList.length}}部>></router-link>
             </section>
             <ul>
                 <li class="hide-scroll-bar">
                     <ul class="pre-show-block-wrapper">
                         <li class="pre-show-block" v-for="value in previewList" :key="value.id">
                             <img :src="value.img" :alt="value.title"/>
-                            <router-link :to="`/pages/movies/moviesDetails/${value.id}`" class="hot-show-block-mask"
+                            <router-link :to="`/pages/movies/movieDetails/${value.id}`" class="hot-show-block-mask"
                                          tag="section">
                                 <div class="tags-head">
                                     <span class="version">
@@ -79,18 +79,17 @@
                 tags: '',
             }
         },
-        computed: {...mapActions(['getMoviesReleased', 'getMoviesPreview'])},
+        computed: {...mapActions(['getMovieReleased', 'getMoviePreview'])},
         mounted() {
-            console.log(1129876)
-            this.getMoviesReleased.then(res => {
-                console.log(res)
+            this.getMovieReleased.then(res => {
+                // console.log(res)
                 this.releasedList = res.data
             }).catch(e => {
                 console.log(e)
             })
 
-            this.getMoviesPreview.then(res => {
-                console.log(res)
+            this.getMoviePreview.then(res => {
+                // console.log(res)
                 this.previewList = res.data
             }).catch(e => {
                 console.log(e)

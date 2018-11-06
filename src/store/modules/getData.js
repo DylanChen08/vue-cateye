@@ -13,32 +13,35 @@ const mutations = {
 
 }
 const actions = {
-    //获取首页的数据
-    async getIndex() {
-        let res = await getData.getIndexMoviesList()
-        return res
-    },
     async getCarousel() {
         let res = await getData.getCarousel()
         return res
     },
     //获取正在上映电影的数据
-    async getMoviesReleased() {
-        let res = await getData.getMoviesReleasedList()
-        return res
-    },
-    //获取指定电影的id
-    async getMovieId({commit},{movieId}){
-        console.log(11256)
-        let res = await getData.getMoviesDetails({movieId})
-        commit('setMovieId',{movieId})
+    async getMovieReleased() {
+        let res = await getData.getMovieReleasedList()
         return res
     },
     //获取未上映电影的数据
-    async getMoviesPreview() {
-        let res = await getData.getMoviesPreviewList()
+    async getMoviePreview() {
+        let res = await getData.getMoviePreviewList()
         return res
     },
+
+    //获取指定id的电影的细节
+    async getMovieDetails({commit},{movieId}){
+        console.log(11256)
+        let res = await getData.getMovieDetails({movieId})
+        commit('setMovieId',{movieId})
+        return res
+    },
+
+    //获取指定id的电影的评论
+    async getMovieComments({commit},{movieId}){
+        let res = await getData.getMoviesComments({movieId})
+        commit('setMovieId',{movieId})
+        return res
+    }
     // getIndexTvList() {
     //     return getData.getIndexTvList().then(() => {
     //     }).catch((err) => {

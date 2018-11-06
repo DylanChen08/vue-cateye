@@ -1,18 +1,18 @@
 <template>
-    <div class="movies-details">
+    <div class="movie-details">
         <!--背景遮罩-->
         <div class="filter-bg"><img :src="moviesDetails.img" alt=""></div>
-        <div class="movies-details-topBar">
+        <div class="movie-details-topBar">
             <template>
                 <div class="primary">
-                    <router-link class="back" to='/pages/movies'><</router-link>
+                    <p class="back" @click="backToPrevious"><</p>
                     <span class="title"><h5>电影</h5></span>
                     <router-link class="share" to="/">分享</router-link>
                 </div>
             </template>
             <template v-if="false">
                 <div class="fixed">
-                    <router-link class="back" to='/pages/movies'>返回</router-link>
+                    <p class="back" @click="backToPrevious"><</p>
                     <section class="title-wrapper">
                         <h2>昨日青空</h2>
                         <h5>crystal sky of yesterday</h5>
@@ -104,6 +104,7 @@
     import {mapActions} from 'vuex'
     import getData from '../../../api/getData'
 
+
     export default {
         name: "moviesDetails",
         data() {
@@ -117,14 +118,21 @@
 
 
         },
-        computed: {},
+        computed: {
+
+        },
         methods: {
-            ...mapActions(['getMovieId'])
+            ...mapActions(['getMovieDetails']),
+            backToPrevious(){
+                //返回上一级
+                this.$router.go(-1)
+            }
         },
         mounted() {
             let movieId = this.$route.params.movieId
             console.log('sending movie`s ID request')
-            this.getMovieId({movieId}).then(res => {
+            console.log(this.$route)
+            this.getMovieDetails({movieId}).then(res => {
                 console.log('res', res)
                 this.moviesDetails = res.data[0]
                 this.tags = this.moviesDetails.ver    //防止处理模板变量时,报错undefined
@@ -135,7 +143,7 @@
 </script>
 
 <style lang="stylus" scoped>
-    .movies-details
+    .movie-details
         .filter-bg
             display grid
             grid 15rem / 1fr
@@ -155,7 +163,7 @@
                 grid-column 1 / auto
                 grid-row 1
                 border 1px solid red
-        .movies-details-topBar
+        .movie-details-topBar
             position fixed
             top 0
             right 0

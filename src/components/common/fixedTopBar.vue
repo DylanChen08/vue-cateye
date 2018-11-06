@@ -1,6 +1,7 @@
 <template>
     <div id="fixedTopBar">
-        <template v-if="$route.path === '/pages/movies'">
+        <template
+                v-show="$route.path === '/pages/movies' && $route.path==='/pages/movies/moviesReleased'&&$route.path==='/pages/movies/moviesPreShows'">
             <!--在电影页面的显示-->
             <div class="movie">
                 <section class="area">
@@ -59,14 +60,30 @@
         },
         methods: {
             onHotShow() {
-                this.$emit('toHotShow', this.val)
-                this.isActive1 = true
-                this.isActive2 = false
+                this.$emit('toHotShow', this.val);
+                this.isActive1 = true;
+                this.isActive2 = false;
+                this.$router.push({path: '/pages/movies/moviesReleased'});
             },
             onPreShow() {
-                this.$emit('toPreShow', this.val)
-                this.isActive1 = false
-                this.isActive2 = true
+                this.$emit('toPreShow', this.val);
+                this.isActive1 = false;
+                this.isActive2 = true;
+                this.$router.push({path: '/pages/movies/moviesPreShows'});
+            }
+        },
+        mounted() {
+            //获取当前路由并渲染（电影页面）
+            let currentLocation = this.$route.path;
+            if (currentLocation === '/pages/movies/moviesReleased') {
+                this.$router.push({path: '/pages/movies/moviesReleased'});
+                this.isActive1 = true;
+                this.isActive2 = false;
+            }
+            if (currentLocation === '/pages/movies/moviesPreShows') {
+                this.$router.push({path: '/pages/movies/moviesPreShows'});
+                this.isActive1 = false;
+                this.isActive2 = true;
             }
         }
     }

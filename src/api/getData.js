@@ -8,17 +8,17 @@ const URL = {
     INDEX_BOOKS: 'index/books',
     MOVIES_RELEASED: 'common/released',
     MOVIES_PREVIEW: 'common/preview',
-    MOVIES_DETAILS: 'common/movies/:movieId'
-
+    MOVIES_DETAILS: 'common/movies/:movieId',
+    MOVIES_COMMENTS: 'common/comment/:movieId',
 }
 
 
 export default {
-    //首页相关api
-    getIndexMoviesList() {
-        return request(URL.INDEX_MOVIES)
-    },
-    //获取轮播图
+    /*
+    * 获取轮播图
+    * methods:get
+    *
+    * */
     getCarousel() {
         return request(URL.INDEX_CAROUSEL)
     },
@@ -32,23 +32,44 @@ export default {
         return request(URL.INDEX_BOOKS)
     },
 
-    //获取正在上映电影
-    getMoviesReleasedList() {
+    /*
+    * 获取正在上映的电影
+    * @methods:get
+    *
+    * */
+    getMovieReleasedList() {
         return request(URL.MOVIES_RELEASED)
     },
-    //获取未上映电影
-    getMoviesPreviewList() {
+
+    /*
+    * 获取全部未上映的电影
+    * @methods:get
+    *
+    * */
+    getMoviePreviewList() {
         return request(URL.MOVIES_PREVIEW)
     },
 
     /*
-    *
-    * @params:movieId
-    * 获取指定单个电影详情
-    * 包括正在上映,未上映的电影
+    * 获取电影的评论
+    * @methods: get
+    * @params: movieId
     *
     * */
-    getMoviesDetails({movieId}) {
+    getMoviesComments({movieId}) {
+        return request(URL.MOVIES_COMMENTS.replace(':movieId', movieId))
+    },
+
+    /*
+    * 获取指定单个电影详情
+    * 包括正在上映,未上映的电影
+    * @params:movieId
+    * @method:get
+    *
+    * */
+    getMovieDetails({movieId}) {
         return request(URL.MOVIES_DETAILS.replace(':movieId', movieId))
     }
+
+
 }

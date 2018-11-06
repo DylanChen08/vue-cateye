@@ -3,7 +3,7 @@
         <section class="movie-description">
             <ul>
                 <router-link class="movie-list-block" v-for="value in moviesReleasedList"
-                             :to="`/pages/movies/moviesDetails/${value.id}`" tag="li">
+                             :to="`/pages/movies/movieDetails/${value.id}`" tag="li">
                     <section class="image">
                         <img :src="value.img"
                              :alt="value.nm"/>
@@ -48,12 +48,12 @@
             }
         },
         computed: {
-            ...mapActions(['getMoviesReleased'])
+            ...mapActions(['getMovieReleased'])
         },
         mounted() {
-            this.getMoviesReleased.then(res => {
-                console.log(999)
-                console.log(res)
+            this.getMovieReleased.then(res => {
+                // console.log(999)
+                // console.log(res)
                 this.moviesReleasedList = res.data
             })
         }
@@ -77,17 +77,19 @@
                     width 3.67rem
                     height 5.42rem
             .description
-                /*padding 0 9.7rem 0 0.6rem*/
+                padding-bottom 1rem
                 grid-column 2
                 grid-row auto
+                border-bottom 1px solid #f7f7f7
             .ticket-purchase
                 justify-items center
                 grid-column 3
                 grid-row auto
-                margin-left 1rem
+                padding 0 0 1rem 1rem
                 display flex
                 justify-content center
                 align-items center
+                border-bottom 1px solid #f7f7f7
                 a
                     display flex
                     justify-content center

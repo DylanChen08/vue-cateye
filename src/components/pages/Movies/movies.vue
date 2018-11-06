@@ -14,8 +14,8 @@
 
 <script>
     import fixedTopBar from '../../common/fixedTopBar'
-    import moviesReleased from './moviesReleased'
-    import moviesPreShows from './moviesPreShows'
+    import moviesReleased from './movieReleased'
+    import moviesPreShows from './moviePreShows'
 
     export default {
         name: "movies",
@@ -34,15 +34,27 @@
         methods: {
             released() {
                 this.view = 'moviesReleased'
-                this.enterAnimate='animated fadeInLeft'
-                this.leaveAnimate='animated fadeOutRight'
+                this.$router.push({path: '/pages/movies/moviesReleased'});
+                this.enterAnimate = 'animated fadeInLeft'
+                this.leaveAnimate = 'animated fadeOutRight'
             },
             preShow() {
                 this.view = 'moviesPreShows'
-                this.enterAnimate='animated fadeInRight'
-                this.leaveAnimate='animated fadeOutLeft'
+                this.$router.push({path: '/pages/movies/moviesPreShows'});
+                this.enterAnimate = 'animated fadeInRight'
+                this.leaveAnimate = 'animated fadeOutLeft'
             }
 
+        },
+        mounted(){
+            //获取当前路由并渲染
+            let currentLocation = this.$route.path;
+            if(currentLocation === '/pages/movies/moviesReleased'){
+                this.view = 'moviesReleased'
+            }
+            if(currentLocation === '/pages/movies/moviesPreShows'){
+                this.view = 'moviesPreShows'
+            }
         }
 
     }
