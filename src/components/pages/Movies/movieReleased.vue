@@ -8,25 +8,27 @@
                         <img :src="value.img"
                              :alt="value.nm"/>
                     </section>
-                    <section class="description">
-                        <h2 class="title">
-                            {{value.nm}}
-                            <!--<span class="version">{{value.ver}}</span>-->
-                        </h2>
-                        <span v-if="value.globalReleased===false"
-                              class="wish-count"><span>{{value.wish}}</span>人想看</span>
-                        <span v-if="value.globalReleased===true&&value.sc!==0" class="score">
+                    <section class="description-purchase-block">
+                        <section class="description">
+                            <h2 class="title">
+                                {{value.nm}}
+                                <!--<span class="version">{{value.ver}}</span>-->
+                            </h2>
+                            <span v-if="value.globalReleased===false"
+                                  class="wish-count"><span>{{value.wish}}</span>人想看</span>
+                            <span v-if="value.globalReleased===true&&value.sc!==0" class="score">
                                         猫眼分数
                                     <span>{{value.sc}}</span>
                                 </span>
-                        <span v-if="value.sc===0">暂无分数</span>
-                        <span class="cast">{{value.desc}}</span>
-                        <span class="show-info">{{value.showInfo}}</span>
-                    </section>
-                    <section class="ticket-purchase">
-                        <router-link class="on-sale" v-if="value.globalReleased===true" to="/">购票</router-link>
-                        <router-link class="pre-sale" v-if="value.globalReleased===false" to="/">预售
-                        </router-link>
+                            <span v-if="value.sc===0">暂无分数</span>
+                            <span class="cast">{{value.desc}}</span>
+                            <span class="show-info">{{value.showInfo}}</span>
+                        </section>
+                        <section class="ticket-purchase">
+                            <router-link class="on-sale" v-if="value.globalReleased===true" to="/">购票</router-link>
+                            <router-link class="pre-sale" v-if="value.globalReleased===false" to="/">预售
+                            </router-link>
+                        </section>
                     </section>
                 </router-link>
             </ul>
@@ -66,7 +68,7 @@
         padding 0 1.25rem
         .movie-list-block
             display grid
-            grid auto / 5.6rem 10rem auto
+            grid auto / 24% 76%
             padding 0.92rem 0
             .image
                 grid-column 1
@@ -76,59 +78,57 @@
                 img
                     width 3.67rem
                     height 5.42rem
-            .description
-                padding-bottom 1rem
+            .description-purchase-block
                 grid-column 2
                 grid-row auto
-                border-bottom 1px solid #f7f7f7
-            .ticket-purchase
-                justify-items center
-                grid-column 3
-                grid-row auto
-                padding 0 0 1rem 1rem
                 display flex
-                justify-content center
-                align-items center
-                border-bottom 1px solid #f7f7f7
-                a
+                flex-direction row
+                border-bottom 1px solid #eee
+                .description
+                    display flex
+                    flex-direction column
+                    width 75%
+                    padding-bottom 1rem
+                    h2.title
+                        font-size 1rem
+                        margin-bottom 0.67rem
+                        overflow hidden
+                        white-space nowrap
+                        text-overflow ellipsis
+                    span
+                        font-size 0.8rem
+                        margin .1rem 0
+                    span.cast
+                        white-space nowrap
+                        text-overflow ellipsis
+                        overflow hidden
+                    span.score > span,
+                    span.wish-count > span
+                        color #ffb400
+                        margin 0 0.2rem
+                .ticket-purchase
+                    width 25%
+                    padding 0 0 1rem 1rem
                     display flex
                     justify-content center
                     align-items center
-                    width 3rem
-                    height 1.5rem
-                    text-align center
-                    font-size 0.8rem
-                    color white
-                    border-radius 0.2rem
-                    background $themeBgColor
-                    -webkit-box-shadow 10px 10px 13px -12px rgba(0, 0, 0, 0.75)
-                    -moz-box-shadow 10px 10px 13px -12px rgba(0, 0, 0, 0.75)
-                    box-shadow 10px 10px 13px -12px rgba(0, 0, 0, 0.75)
-                .on-sale
-                    background $themeBgColor
-                .pre-sale
-                    background $themeBgColorPrimary
-
-        .description
-            display flex
-            flex-direction column
-            h2.title
-                font-size 1rem
-                margin-bottom 0.67rem
-                overflow hidden
-                white-space nowrap
-                text-overflow ellipsis
-            span
-                font-size 0.8rem
-                margin .1rem 0
-            span.cast
-                white-space nowrap
-                text-overflow ellipsis
-                overflow hidden
-            span.score > span,
-            span.wish-count > span
-                color #ffb400
-                margin 0 0.2rem
-
+                    a
+                        display flex
+                        justify-content center
+                        align-items center
+                        width 3rem
+                        height 1.5rem
+                        text-align center
+                        font-size 0.8rem
+                        color white
+                        border-radius 0.2rem
+                        background $themeBgColor
+                        -webkit-box-shadow 10px 10px 13px -12px rgba(0, 0, 0, 0.75)
+                        -moz-box-shadow 10px 10px 13px -12px rgba(0, 0, 0, 0.75)
+                        box-shadow 10px 10px 13px -12px rgba(0, 0, 0, 0.75)
+                    .on-sale
+                        background $themeBgColor
+                    .pre-sale
+                        background $themeBgColorPrimary
 
 </style>

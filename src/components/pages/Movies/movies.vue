@@ -64,7 +64,8 @@
     @import "../../../assets/css/lib/animate.css";
     #movies
         position absolute
-        top 10%;
+        top 10%
         left 0
+        width 100%
         padding 0 0 6rem 0
 </style>

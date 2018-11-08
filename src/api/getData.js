@@ -9,7 +9,7 @@ const URL = {
     MOVIES_RELEASED: 'common/released',
     MOVIES_PREVIEW: 'common/preview',
     MOVIES_DETAILS: 'common/movies/:movieId',
-    MOVIES_COMMENTS: 'common/comment/:movieId',
+    MOVIES_COMMENTS: 'common/comments/:movieId',
 }
 
 

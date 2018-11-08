@@ -78,7 +78,7 @@
                     </div>
 
                 </div>
-                <div class="rate-star">
+                <router-link class="rate-star" :to="`/pages/movies/comments/${moviesDetails.id}`" tag="div">
                     <span class="title">猫眼评分</span>
                     <span class="score-star">
                        <span class="star">
@@ -94,7 +94,7 @@
                     <span class="comment-count">
                       100人
                     </span>
-                </div>
+                </router-link>
             </section>
         </section>
     </div>
@@ -133,6 +133,7 @@
             console.log('sending movie`s ID request')
             console.log(this.$route)
             this.getMovieDetails({movieId}).then(res => {
+                console.log(199709)
                 console.log('res', res)
                 this.moviesDetails = res.data[0]
                 this.tags = this.moviesDetails.ver    //防止处理模板变量时,报错undefined

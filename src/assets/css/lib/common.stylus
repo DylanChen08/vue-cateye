@@ -8,6 +8,9 @@ $themeBgColorPrimary=#3a97e0
   margin 0
   padding 0
   box-sizing border-box
+  font-family PingFangSC-Regular,Hiragino Sans GB,sans-serif
+  -webkit-font-smoothing: antialiased
+  font-smoothing: antialiased
 
 a
   text-decoration none

@@ -1,7 +1,7 @@
 <template>
     <div id="fixedTopBar">
         <template
-                v-show="$route.path === '/pages/movies' && $route.path==='/pages/movies/moviesReleased'&&$route.path==='/pages/movies/moviesPreShows'">
+                v-show="$route.path === '/pages/movies' && $route.path==='/pages/movies/movieReleased'&&$route.path==='/pages/movies/moviePreShows'">
             <!--在电影页面的显示-->
             <div class="movie">
                 <section class="area">
@@ -63,25 +63,25 @@
                 this.$emit('toHotShow', this.val);
                 this.isActive1 = true;
                 this.isActive2 = false;
-                this.$router.push({path: '/pages/movies/moviesReleased'});
+                this.$router.push({path: '/pages/movies/movieReleased'});
             },
             onPreShow() {
                 this.$emit('toPreShow', this.val);
                 this.isActive1 = false;
                 this.isActive2 = true;
-                this.$router.push({path: '/pages/movies/moviesPreShows'});
+                this.$router.push({path: '/pages/movies/moviePreShows'});
             }
         },
         mounted() {
             //获取当前路由并渲染（电影页面）
             let currentLocation = this.$route.path;
-            if (currentLocation === '/pages/movies/moviesReleased') {
-                this.$router.push({path: '/pages/movies/moviesReleased'});
+            if (currentLocation === '/pages/movies/movieReleased') {
+                this.$router.push({path: '/pages/movies/movieReleased'});
                 this.isActive1 = true;
                 this.isActive2 = false;
             }
-            if (currentLocation === '/pages/movies/moviesPreShows') {
-                this.$router.push({path: '/pages/movies/moviesPreShows'});
+            if (currentLocation === '/pages/movies/moviePreShows') {
+                this.$router.push({path: '/pages/movies/moviePreShows'});
                 this.isActive1 = false;
                 this.isActive2 = true;
             }
@@ -103,7 +103,7 @@
         .cinema,
         .show
             display grid
-            grid auto / 3.75rem auto 2.5rem
+            grid auto / 12% 76% 12%
             .area, .middle-title, .search-icon
                 padding 1rem 0
                 justify-items center
