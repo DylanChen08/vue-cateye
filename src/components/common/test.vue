@@ -1,5 +1,9 @@
 <template>
-    <div>test</div>
+    <div>
+        <section class="test-fixed">
+            <el-button type="success" icon="el-icon-check" circle></el-button>
+        </section>
+    </div>
 </template>
 
 <script>
@@ -7,10 +11,14 @@
 
     window.request = request
     export default {
-        name: "test"
+        name: "test",
+        props:['test']
     }
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
+    .test-fixed
+        position fixed
+        top 20%
+        z-index 9999
 </style>

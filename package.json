@@ -1,5 +1,5 @@
 {
-  "name": "vue-cateye",
+  "name": "vue-catEye",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,6 +23,7 @@
     "@vue/cli-service": "^3.0.3",
     "@vue/eslint-config-standard": "^3.0.5",
     "@vue/test-utils": "^1.0.0-beta.20",
+    "better-scroll": "^1.13.2",
     "chai": "^4.1.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",

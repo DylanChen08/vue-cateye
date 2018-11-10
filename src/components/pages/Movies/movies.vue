@@ -1,12 +1,8 @@
 <template>
     <div id="movies">
         <fixedTopBar @toHotShow="released" @toPreShow="preShow"></fixedTopBar>
-        <transition
-                name="component-fade"
-                :enter-active-class="enterAnimate"
-                :leave-active-class="leaveAnimate"
-        >
-            <components class="xxx9" v-bind:is="view"></components>
+        <transition name="component-fade" :enter-active-class="enterAnimate" :leave-active-class="leaveAnimate">
+            <components v-bind:is="view"></components>
         </transition>
     </div>
 
@@ -46,13 +42,13 @@
             }
 
         },
-        mounted(){
+        mounted() {
             //获取当前路由并渲染
             let currentLocation = this.$route.path;
-            if(currentLocation === '/pages/movies/moviesReleased'){
+            if (currentLocation === '/pages/movies/moviesReleased') {
                 this.view = 'moviesReleased'
             }
-            if(currentLocation === '/pages/movies/moviesPreShows'){
+            if (currentLocation === '/pages/movies/moviesPreShows') {
                 this.view = 'moviesPreShows'
             }
         }
