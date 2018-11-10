@@ -12,7 +12,6 @@
     window.request = request
     export default {
         name: "test",
-        props:['test']
     }
 </script>
 
