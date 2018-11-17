@@ -28,6 +28,7 @@ export default {
     getIndexShowsList() {
         return request(URL.INDEX_SHOWS)
     },
+
     getIndexBooksList() {
         return request(URL.INDEX_BOOKS)
     },

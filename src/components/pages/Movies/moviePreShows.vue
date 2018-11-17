@@ -1,11 +1,11 @@
 <template>
-    <div class="moviePreview" v-loading="loading"
-
-    >
+    <div class="moviePreview" v-loading="loading">
         <section class="movie-description" ref="bsWrapper">
             <ul>
-                <router-link class="movie-list-block" v-for="value in moviePreviewList"
+                <router-link class="movie-list-block" v-for="(value,index) in moviePreviewList"
                              :to="`/pages/movies/movieDetails/${value.id}`" tag="li">
+                    <span class="date-sort"
+                          v-if="value.pubDate!==dateSorter[--index]">{{convertDate(value.pubDate)}}</span>
                     <section class="image">
                         <img :src="value.img"
                              :alt="value.nm"/>
@@ -34,9 +34,6 @@
                 </router-link>
             </ul>
         </section>
-        <section class="btn-buy">
-            <router-link to="/"></router-link>
-        </section>
     </div>
 </template>
 
@@ -49,59 +46,87 @@
         data() {
             return {
                 moviePreviewList: [], //未上映电影的列表
-                loading: null
+                loading: null,
+                dateSorter: [],//日期分类
             }
         },
         created() {
             this.loading = true
+            window.addEventListener('scroll', () => {
+            })
         },
         computed: {
-            ...mapActions(['getMoviePreview'])
+            ...mapActions(['getMoviePreview']),
         },
+        watch: {},
         methods: {
-            pullDownRefresh() {
+            //初始化better-scroll
+            initScroll() {
                 let that = this
                 let options = {}
                 options.pullDownRefresh = {
                     threshold: 50,  // 当下拉到超过顶部 50px 时，触发 pullingDown 事件
                     stop: 20        // 刷新数据的过程中，回弹停留在距离顶部还有 20px 的位置
                 }
-                that.getMoviePreview.then(res => {
-                    that.moviePreviewList = res.data
-                    that.$nextTick(() => {
-                        this.loading = false
-                        if (!that.scroll) {
-                            //DOM挂载完毕，允许点击事件
-                            that.scroll = new BScroll(that.$refs.bsWrapper, {click: true, probeType: 2})
-                            //重置scroll对象,提供触发下拉事件的参数
-                            that.scroll = new BScroll(that.$refs.bsWrapper, options)
-                            that.scroll.on('pullingDown', () => {
-                                this.loading = true
-                                // 刷新数据的过程中，回弹停留在距离顶部还有20px的位置
-                                that.getMoviePreview.then((res) => {
-                                    if (res.status === 1 && res.msg === 'ok') {
-                                        that.moviePreviewList = res.data
-                                        this.loading = false
-                                    } else {
-                                        console.log('获取失败')
-                                    }
-                                    console.log('res in scroll', res)
-                                    console.log(that.loading)
-                                    that.moviesReleasedList = res.data
-                                    // 在刷新数据完成之后，调用 finishPullDown 方法，回弹到顶部
-                                    that.scroll.finishPullDown()
-                                })
-                            })
+                that.scroll = new BScroll(that.$refs.bsWrapper, {click: true, probeType: 3})
+                //重置scroll对象,提供触发下拉事件的参数
+                that.scroll = new BScroll(that.$refs.bsWrapper, options)
+            },
+
+            //下拉刷新
+            pullDownRefresh() {
+                let that = this;
+                that.scroll.on('pullingDown', () => {
+                    // console.log(that.$refs.fixDate[0].offsetTop)
+                    this.loading = true
+                    // 刷新数据的过程中，回弹停留在距离顶部还有20px的位置
+                    that.getMoviePreview.then((res) => {
+                        if (res.status === 1 && res.msg === 'ok') {
+                            that.moviePreviewList = res.data
+                            this.loading = false
+                            that.sortByDate(res.data)
                         } else {
-                            that.scroll.refresh()
+                            console.log('获取失败')
                         }
+                        console.log('res in scroll', res)
+                        console.log(that.loading)
+                        that.dateSorter = []            //每次刷新都重置数组
+                        that.scroll.finishPullDown()    // 在刷新数据完成之后，调用 finishPullDown 方法，回弹到顶部
                     })
                 })
-            }
+                that.scroll.on('scroll', () => {
+                    this.handleScroll()
+                })
+            },
+
+            //根据日期分类
+            sortByDate(dataArr) {
+                let rawGroup = dataArr.map(x => {
+                    x.pubDate  //遍历每个数组内的时间属性
+                    this.dateSorter.push(x.pubDate)  //赋值
+                })
+            },
         },
+
         mounted() {
+
+            window.addEventListener('scroll', this.handleScroll)
             //调用下拉刷新并获取数据的方法
-            this.pullDownRefresh()
+            let that = this
+            that.$nextTick(() => {
+                that.loading = false
+                if (!that.scroll) {
+                    that.initScroll()
+                    that.pullDownRefresh()
+                } else {
+                    that.scroll.refresh()
+                }
+            })
+            //DOM挂载完毕,渲染数据
+            that.getMoviePreview.then(res => {
+                that.moviePreviewList = res.data
+                that.sortByDate(res.data)
+            })
         }
     }
 </script>
@@ -116,6 +141,12 @@
                 display grid
                 grid auto / 24% 76%
                 padding 0.92rem 0
+                .date-sort
+                    grid-column 1
+                    grid-row auto
+                    padding .5rem 0 2rem 0
+                    font-weight bold
+                    text-align center
                 .image
                     grid-column 1
                     grid-row auto

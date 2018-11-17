@@ -81,20 +81,18 @@
                 <router-link class="rate-star" :to="`/pages/movies/comments/${moviesDetails.id}`" tag="div">
                     <span class="title">猫眼评分</span>
                     <span class="score-star">
-                       <span class="star">
-                            <el-rate
-                                    v-model="score"
-                                    disabled
-                                    show-score
-                                    text-color="#ff9900"
-                                    score-template="{value}">
-                        </el-rate>
-                       </span>
+                        <span class="sc-num">{{rawScore}}</span>
+                        <el-rate v-model="score" disabled show-score text-color="#ff9900"
+                                 score-template="{value}"></el-rate>
                     </span>
                     <span class="comment-count">
-                      100人
+                      100人>
                     </span>
                 </router-link>
+            </section>
+            <section class="view-feedback-box">
+                <router-link class="wish" to="/">想看</router-link>
+                <router-link class="experienced" to="/">看过</router-link>
             </section>
         </section>
     </div>
@@ -111,21 +109,24 @@
             return {
                 moviesDetails: '',
                 tags: '',
-                score: 8
+                rawScore: null, //原生分数
+                score: null     //分值转换适合element-ui
             }
         },
         created() {
 
 
         },
-        computed: {
-
-        },
+        computed: {},
         methods: {
             ...mapActions(['getMovieDetails']),
-            backToPrevious(){
+            backToPrevious() {
                 //返回上一级
                 this.$router.go(-1)
+            },
+            showScore() {
+                this.rawScore = this.moviesDetails.sc  //原生分数
+                this.score = this.moviesDetails.sc / 2  //分值转换适合elementUI
             }
         },
         mounted() {
@@ -133,11 +134,10 @@
             console.log('sending movie`s ID request')
             console.log(this.$route)
             this.getMovieDetails({movieId}).then(res => {
-                console.log(199709)
                 console.log('res', res)
                 this.moviesDetails = res.data[0]
                 this.tags = this.moviesDetails.ver    //防止处理模板变量时,报错undefined
-                this.score = this.moviesDetails.sc
+                this.showScore() //分数转换
             })
         }
     }
@@ -145,16 +145,16 @@
 
 <style lang="stylus" scoped>
     .movie-details
+        padding 0 0.8rem 0.7rem
         .filter-bg
             display grid
-            grid 15rem / 1fr
+            grid 20rem / 1fr
             color #fff
             width 100%
             position absolute
             top 0
             left 0
             z-index -1
-            border 1px solid green
             overflow hidden
             filter blur(1.5rem)
             opacity .9
@@ -163,24 +163,23 @@
                 height 100%
                 grid-column 1 / auto
                 grid-row 1
-                border 1px solid red
         .movie-details-topBar
             position fixed
             top 0
             right 0
             width 100%
+            padding 0 0.8rem
             z-index 9999
             .primary
                 display grid
                 grid 3rem / 3rem auto 3rem
-                border 1px solid red
                 .back
                     grid-column 1
                     grid-row 1
                     display flex
                     justify-content center
                     align-items center
-                    border 1px solid red
+
                     color white
                 .title
                     grid-column 2
@@ -188,7 +187,7 @@
                     display flex
                     justify-content center
                     align-items center
-                    border 1px solid red
+
                     color white
                     h5
                         padding .2rem .8rem
@@ -204,9 +203,8 @@
                     display flex
                     justify-content center
                     align-items center
-                    border 1px solid red
                     color white
-
+                    text-align right
         .details-block
             z-index 10
             h5
@@ -225,16 +223,13 @@
             .image-video-wrapper
                 grid-column 1
                 grid-row 1
-                border 1px solid red
                 img
                     width 100%
                     height 100%
-                    border 1px solid red
             .details-list
                 padding-left.75rem
                 grid-column 2
                 grid-row 1
-                border 1px solid red
                 .title
                     color #fff
                     margin-top 0.25rem
@@ -267,7 +262,7 @@
             display flex
             flex-direction row
             width 100%
-            border 1px solid red
+            margin-top .7rem
             .band
                 display flex
                 justify-content center
@@ -275,17 +270,22 @@
                 width 12%
                 color #fff
                 font-size .75rem
-                border 1px solid red
+                background rgba(255, 255, 255, 0.2)
+                border-right 1px solid #ddd
+                border-top-left-radius .25rem
+                border-bottom-left-radius .25rem
                 figcaption
                     font-weight bold
                     font-size 0.85rem
                     letter-spacing .1rem
             .rate-percentage
-                width 60%
+                width 56%
                 padding-top .25rem
                 color #fff
                 font-size .75rem
-                border 1px solid red
+                background rgba(255, 255, 255, 0.2)
+                border-top-right-radius 0.25rem
+                border-bottom-right-radius 0.25rem
             .rate-percentage-wrapper
                 display flex
                 flex-direction row
@@ -298,17 +298,41 @@
                 .progress-bar
                     width 70%
             .rate-star
-                width 26%
+                width 30%
                 display flex
                 flex-direction column
                 justify-content center
                 color #fff
+                margin-left .6rem
                 padding .4rem .7rem
+                background rgba(255, 255, 255, 0.2)
+                border-radius .25rem
                 .title
                     font-weight bold
                     font-size .85rem
+                .score-star
+                    display flex
+                    flex-direction row
+                    flex-wrap nowrap
+                    .sc-num
+                        margin 5px 6px 0 0
+                        color #ff9900
                 .comment-count
                     font-size .75rem
                     font-weight 300
-                    margin-top 1rem
+        .view-feedback-box
+            display flex
+            flex-direction row
+            width 100%
+            .wish, .experienced
+                flex 1
+                padding 0.8rem 0
+                text-align center
+                color #fff
+                background rgba(255, 255, 255, 0.2)
+                border-radius .25rem
+            .wish
+                margin 0.6rem 0.25rem 0 0
+            .experienced
+                margin 0.6rem 0 0 0.25rem
 </style>

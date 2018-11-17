@@ -2,13 +2,13 @@ $themeColor = #333
 $themeColorLight = #696969
 $themeColorLighter = #999
 $themeBgColor = #f03d37
-$themeBgColorPrimary=#3a97e0
+$themeBgColorPrimary = #3a97e0
 
 *
   margin 0
   padding 0
   box-sizing border-box
-  font-family PingFangSC-Regular,Hiragino Sans GB,sans-serif
+  font-family PingFangSC-Regular, Hiragino Sans GB, sans-serif
   -webkit-font-smoothing: antialiased
   font-smoothing: antialiased
 
@@ -20,7 +20,6 @@ ul, ol
 
 html
   font-size 16px
-
 
 /*改写swiper样式*/
 .wh_indicator_item
@@ -50,16 +49,22 @@ html
   background $themeBgColor !important
 
 .el-progress__text
-  color #fff!important
-  font-size .75rem!important
+  color #fff !important
+  font-size .75rem !important
+
+.el-rate
+  height 20px
+  line-height 1
+  margin-top 5px
 
 .el-rate__icon
-  font-size 8px!important
-  margin-right 6px
+  font-size 8px !important
+  margin-right 4px !important
   color #c0c4cc
   -webkit-transition .3s
   transition .3s
-
+.el-rate__text
+  display none !important
 .icon
   width 1em
   height 1em

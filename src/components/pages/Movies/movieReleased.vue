@@ -4,6 +4,7 @@
             <ul>
                 <router-link class="movie-list-block" v-for="value in moviesReleasedList"
                              :to="`/pages/movies/movieDetails/${value.id}`" tag="li">
+                    {{value.comingTitle}}
                     <section class="image">
                         <img :src="value.img"
                              :alt="value.nm"/>
@@ -33,9 +34,6 @@
                 </router-link>
             </ul>
         </section>
-        <section class="btn-buy">
-            <router-link to="/"></router-link>
-        </section>
     </div>
 </template>
 
@@ -59,49 +57,99 @@
             ...mapActions(['getMovieReleased'])
         },
         methods: {
-            pullDownRefresh() {
+            //初始化
+            initScroll() {
                 let that = this
                 let options = {}
                 options.pullDownRefresh = {
                     threshold: 50,  // 当下拉到超过顶部 50px 时，触发 pullingDown 事件
                     stop: 20        // 刷新数据的过程中，回弹停留在距离顶部还有 20px 的位置
                 }
-                that.getMovieReleased.then(res => {
-                    that.moviesReleasedList = res.data
-                    that.$nextTick(() => {
-                        this.loading = false
-                        if (!that.scroll) {
-                            //DOM挂载完毕，允许点击事件
-                            that.scroll = new BScroll(that.$refs.bsWrapper, {click: true, probeType: 2})
-                            //重置scroll对象,提供触发下拉事件的参数
-                            that.scroll = new BScroll(that.$refs.bsWrapper, options)
-                            that.scroll.on('pullingDown', () => {
-                                this.loading = true
-                                // 刷新数据的过程中，回弹停留在距离顶部还有20px的位置
-                                that.getMovieReleased.then((res) => {
-                                    if (res.status === 1 && res.msg === 'ok') {
-                                        that.moviesReleasedList = res.data
-                                        this.loading = false
-                                    } else {
-                                        console.log('获取失败')
-                                    }
-                                    console.log('res in scroll', res)
-                                    console.log(that.loading)
-                                    that.moviesReleasedList = res.data
-                                    // 在刷新数据完成之后，调用 finishPullDown 方法，回弹到顶部
-                                    that.scroll.finishPullDown()
-                                })
-                            })
+                that.scroll = new BScroll(that.$refs.bsWrapper, {click: true, probeType: 2})
+                //重置scroll对象,提供触发下拉事件的参数
+                that.scroll = new BScroll(that.$refs.bsWrapper, options)
+            },
+
+            //下拉刷新
+            pullDownRefresh() {
+                let that = this;
+                that.scroll.on('pullingDown', () => {
+                    this.loading = true
+                    // 刷新数据的过程中，回弹停留在距离顶部还有20px的位置
+                    that.getMovieReleased.then((res) => {
+                        if (res.status === 1 && res.msg === 'ok') {
+                            that.moviesReleasedList = res.data
+                            this.loading = false
                         } else {
-                            that.scroll.refresh()
+                            console.log('获取失败')
                         }
+                        console.log('res in scroll', res)
+                        console.log(that.loading)
+                        that.dateSorter = []            //每次刷新都重置数组
+                        that.scroll.finishPullDown()    // 在刷新数据完成之后，调用 finishPullDown 方法，回弹到顶部
                     })
                 })
-            }
+            },
+
+
+            // pullDownRefresh() {
+            //     let that = this
+            //     let options = {}
+            //     options.pullDownRefresh = {
+            //         threshold: 50,  // 当下拉到超过顶部 50px 时，触发 pullingDown 事件
+            //         stop: 20        // 刷新数据的过程中，回弹停留在距离顶部还有 20px 的位置
+            //     }
+            //     that.getMovieReleased.then(res => {
+            //         that.moviesReleasedList = res.data
+            //         console.log(res)
+            //         that.$nextTick(() => {
+            //             this.loading = false
+            //             if (!that.scroll) {
+            //                 //DOM挂载完毕，允许点击事件
+            //                 that.scroll = new BScroll(that.$refs.bsWrapper, {click: true, probeType: 2})
+            //                 //重置scroll对象,提供触发下拉事件的参数
+            //                 that.scroll = new BScroll(that.$refs.bsWrapper, options)
+            //                 that.scroll.on('pullingDown', () => {
+            //                     this.loading = true
+            //                     // 刷新数据的过程中，回弹停留在距离顶部还有20px的位置
+            //                     that.getMovieReleased.then((res) => {
+            //                         if (res.status === 1 && res.msg === 'ok') {
+            //                             that.moviesReleasedList = res.data
+            //                             this.loading = false
+            //                         } else {
+            //                             console.log('获取失败')
+            //                         }
+            //                         console.log('res in scroll', res)
+            //                         console.log(that.loading)
+            //                         that.moviesReleasedList = res.data
+            //                         // 在刷新数据完成之后，调用 finishPullDown 方法，回弹到顶部
+            //                         that.scroll.finishPullDown()
+            //                     })
+            //                 })
+            //             } else {
+            //                 that.scroll.refresh()
+            //             }
+            //         })
+            //     })
+            // }
         },
         mounted() {
             //调用下拉刷新并获取数据的方法
-            this.pullDownRefresh()
+            let that = this
+            that.$nextTick(() => {
+                that.loading = false
+                if (!that.scroll) {
+                    that.initScroll()
+                    that.pullDownRefresh()
+
+                } else {
+                    that.scroll.refresh()
+                }
+            })
+            //DOM挂载完毕,渲染数据
+            that.getMovieReleased.then(res => {
+                that.moviesReleasedList = res.data
+            })
         }
 
     }
