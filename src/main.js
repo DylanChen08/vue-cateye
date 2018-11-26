@@ -9,15 +9,12 @@ import utils from './helpers/utils'
 import lodash from 'lodash'
 
 
-
-
 Vue.config.productionTip = false
 
 
 Vue.use(ElementUI);
 Vue.use(utils);
 Vue.use(lodash);
-
 
 
 new Vue({

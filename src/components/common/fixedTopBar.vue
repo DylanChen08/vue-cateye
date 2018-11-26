@@ -8,12 +8,14 @@
                     CN
                 </section>
                 <section class="middle-title movies">
-                    <span class="hot-show" v-bind:class="[isActive1?'active':'']" @click="onHotShow">正在热映</span>
-                    <span class="pre-show" v-bind:class="[isActive2?'active':'']" @click="onPreShow">即将热映</span>
+                    <span class="hot-show" :class="[view ==='movieReleased'?'active':'']"
+                          @click="onHotShow">正在热映</span>
+                    <span class="pre-show" :class="[view !=='movieReleased'?'active':'']"
+                          @click="onPreShow">即将热映</span>
+                    <div class="active-bar" :style="{left:statusBarOffset+'%'}"></div>
                 </section>
-                <section class="search-icon">xxx</section>
+                <section class="search-icon">&</section>
             </div>
-
         </template>
         <template v-if="$route.path === '/pages/cinemas'">
             <!--在影院页面的显示-->
@@ -46,45 +48,37 @@
 <script>
     export default {
         name: "fixedTopBar",
-        props: ['view'],
+        props: ['view', 'statusBarOffset'],
         data() {
             return {
                 val: '',
-                isActive1: true,
-                isActive2: false
-
+                currentPath: '',
+                statusBarOffsetVal: ''
             }
         },
         created() {
             this.val = this.view
+            this.statusBarOffsetVal = this.statusBarOffset
         },
         methods: {
             onHotShow() {
-                this.$emit('toHotShow', this.val);
-                this.isActive1 = true;
-                this.isActive2 = false;
+                this.$emit('toHotShow', [this.val, this.statusBarOffsetVal]);
                 this.$router.push({path: '/pages/movies/movieReleased'});
+                this.statusBarOffsetVal = 32
+                console.log(this.view)
             },
             onPreShow() {
-                this.$emit('toPreShow', this.val);
-                this.isActive1 = false;
-                this.isActive2 = true;
+                this.$emit('toPreShow', [this.val, this.statusBarOffsetVal]);
+                this.statusBarOffsetVal = 59
                 this.$router.push({path: '/pages/movies/moviePreShows'});
+            },
+        },
+        watch: {
+            statusBarOffset() {
+                return this.statusBarOffsetVal
             }
         },
         mounted() {
-            //获取当前路由并渲染（电影页面）
-            let currentLocation = this.$route.path;
-            if (currentLocation === '/pages/movies/movieReleased') {
-                this.$router.push({path: '/pages/movies/movieReleased'});
-                this.isActive1 = true;
-                this.isActive2 = false;
-            }
-            if (currentLocation === '/pages/movies/moviePreShows') {
-                this.$router.push({path: '/pages/movies/moviePreShows'});
-                this.isActive1 = false;
-                this.isActive2 = true;
-            }
         }
     }
 </script>
@@ -96,7 +90,6 @@
         top 0
         left 0
         width 100%
-        border 1px solid red
         background $themeBgColor
         z-index 10000
         .movie,
@@ -110,19 +103,25 @@
                 text-align center
                 color white
             .area
-                border 1px solid red
                 grid-row 1
                 grid-column 1
 
             .middle-title
-                border 1px solid red
                 grid-row 1
                 grid-column 2
+                position relative
+            .middle-title .active-bar
+                position absolute
+                bottom 0
+                left 32%
+                width 1.5rem
+                height 00.21rem
+                background #fff
             .middle-title.movies span
                 font-size 0.9375rem
             /*针对电影页*/
             .middle-title.movies span
-                position relative
+                /*position relative*/
                 margin 0 0.8rem
                 font-size 0.9375rem
                 padding-bottom 1.06rem
@@ -131,24 +130,7 @@
             .middle-title.movies span.hot-show.active,
             .middle-title.movies span.pre-show.active
                 color white
-            .middle-title.movies span.hot-show.active::after
-                content ''
-                position absolute
-                bottom 0
-                left 36%
-                width 1.5rem
-                height 0.1rem
-                background white
-            .middle-title.movies span.pre-show.active::after
-                content ''
-                position absolute
-                bottom 0
-                left 36%
-                width 1.5rem
-                height 0.1rem
-                background white
             .search-icon
-                border 1px solid red
                 grid-row 1
                 grid-column 3
 

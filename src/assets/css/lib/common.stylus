@@ -85,6 +85,7 @@ html
   left 0
   box-shadow 0 0 3px 2px #ddd
   background white
+  z-index 9999
   dl
     flex 1
     text-align center

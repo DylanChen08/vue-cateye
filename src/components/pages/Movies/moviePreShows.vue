@@ -1,5 +1,7 @@
 <template>
-    <div class="moviePreview" v-loading="loading">
+    <div class="moviePreview" v-loading="loading" element-loading-text="拼命加载中"
+         element-loading-spinner="el-icon-loading"
+         element-loading-background="rgba(0, 0, 0, 0.8)">
         <section class="movie-description" ref="bsWrapper">
             <ul>
                 <router-link class="movie-list-block" v-for="(value,index) in moviePreviewList"
@@ -66,7 +68,8 @@
                 let options = {}
                 options.pullDownRefresh = {
                     threshold: 50,  // 当下拉到超过顶部 50px 时，触发 pullingDown 事件
-                    stop: 20        // 刷新数据的过程中，回弹停留在距离顶部还有 20px 的位置
+                    stop: 20,        // 刷新数据的过程中，回弹停留在距离顶部还有 20px 的位置
+                    scrollX: true
                 }
                 that.scroll = new BScroll(that.$refs.bsWrapper, {click: true, probeType: 3})
                 //重置scroll对象,提供触发下拉事件的参数
@@ -93,9 +96,6 @@
                         that.dateSorter = []            //每次刷新都重置数组
                         that.scroll.finishPullDown()    // 在刷新数据完成之后，调用 finishPullDown 方法，回弹到顶部
                     })
-                })
-                that.scroll.on('scroll', () => {
-                    this.handleScroll()
                 })
             },
 
@@ -134,6 +134,7 @@
 <style lang="stylus" scoped>
     @import "../../../assets/css/lib/common.stylus"
     .moviePreview
+        width 100%
         padding 0 1.25rem
         .movie-description
             height 1vh
