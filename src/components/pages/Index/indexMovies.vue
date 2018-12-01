@@ -7,7 +7,7 @@
                 <router-link to="/pages/movies/movieReleased"> 全部{{releasedList.length}}部>></router-link>
             </section>
             <ul class="hot-show-block-wrapper">
-                <li class="hot-show-block" v-for="item in releasedList" :key="item.id">
+                <li class="hot-show-block" v-for="(item,index) in releasedList" :key="item.id" v-if="index<12">
                     <img :src="item.img" :alt="item.title"/>
                     <router-link :to="`/pages/movies/movieDetails/${item.id}`" class="hot-show-block-mask"
                                  tag="section">
@@ -27,6 +27,16 @@
                     <h3 class="title">{{item.title}}</h3>
                     <router-link class="buy" to="/">购票</router-link>
                 </li>
+                <!--显示更多-->
+                <li class="hot-show-block-end">
+                    <router-link to="/pages/movies/movieReleased" class="hot-show-block-mask-end">
+                        <section class="inner-text">
+                            <span>查看全部</span>
+                            <span>{{releasedList.length}}部</span>
+                        </section>
+                    </router-link>
+                </li>
+
             </ul>
         </div>
         <!--即将上映-->
@@ -38,7 +48,7 @@
             <ul>
                 <li class="hide-scroll-bar">
                     <ul class="pre-show-block-wrapper">
-                        <li class="pre-show-block" v-for="value in previewList" :key="value.id">
+                        <li class="pre-show-block" v-for="(value,index) in previewList" :key="value.id" v-if="index<12">
                             <img :src="value.img" :alt="value.title"/>
                             <router-link :to="`/pages/movies/movieDetails/${value.id}`" class="hot-show-block-mask"
                                          tag="section">
@@ -58,11 +68,19 @@
                             <h3 class="title">{{value.title}}</h3>
                             <h5>{{convertDate(value.pubDate)}}</h5>
                         </li>
+                        <!--显示更多-->
+                        <li class="hot-show-block-end">
+                            <router-link to="/pages/movies/moviePreShows" class="hot-show-block-mask-end">
+                                <section class="inner-text">
+                                    <span>查看全部</span>
+                                    <span>{{previewList.length}}部</span>
+                                </section>
+                            </router-link>
+                        </li>
                     </ul>
                 </li>
             </ul>
         </div>
-
     </div>
 
 </template>
@@ -82,14 +100,14 @@
         computed: {...mapActions(['getMovieReleased', 'getMoviePreview'])},
         mounted() {
             this.getMovieReleased.then(res => {
-                // console.log(res)
+                // console.log("res333",res.data.length)
                 this.releasedList = res.data
             }).catch(e => {
                 console.log(e)
             })
 
             this.getMoviePreview.then(res => {
-                // console.log(res)
+                // console.log("res333",res)
                 this.previewList = res.data
             }).catch(e => {
                 console.log(e)
@@ -121,6 +139,30 @@
         white-space nowrap
         overflow-x auto
         padding 0.75rem 0
+
+    .hot-show-block-end, .pre-show-block-end
+        position relative
+        display inline-block
+        margin-right 0.6rem
+        width 5.75rem
+        height 170px
+        .hot-show-block-mask-end, .pre-show-block-mask-end
+            position absolute
+            left 0
+            top 2%
+            width 100%
+            height 8.25rem
+            background #f0f0f0
+            display flex
+            justify-content center
+            align-items center
+            section
+                display flex
+                flex-direction column
+                span
+                    text-align center
+                    margin .5rem 0
+                    color #bcbcbc
 
     .hot-show-block, .pre-show-block
         position relative

@@ -6,10 +6,10 @@ const URL = {
     INDEX_TV: 'index/tv',
     INDEX_SHOWS: 'index/shows',
     INDEX_BOOKS: 'index/books',
-    MOVIES_RELEASED: 'common/released',
-    MOVIES_PREVIEW: 'common/preview',
-    MOVIES_DETAILS: 'common/movies/:movieId',
-    MOVIES_COMMENTS: 'common/comments/:movieId',
+    MOVIE_RELEASED: 'common/released/:page',
+    MOVIE_PREVIEW: 'common/preview/:page',
+    MOVIE_DETAILS: 'common/movies/:movieId',
+    MOVIE_COMMENTS: 'common/comments/:movieId',
 }
 
 
@@ -38,8 +38,8 @@ export default {
     * @methods:get
     *
     * */
-    getMovieReleasedList() {
-        return request(URL.MOVIES_RELEASED)
+    getMovieReleasedList({page}) {
+        return request(URL.MOVIE_RELEASED.replace(':page', page))
     },
 
     /*
@@ -47,8 +47,8 @@ export default {
     * @methods:get
     *
     * */
-    getMoviePreviewList() {
-        return request(URL.MOVIES_PREVIEW)
+    getMoviePreviewList({page}) {
+        return request(URL.MOVIE_PREVIEW.replace(':page', page))
     },
 
     /*
@@ -58,7 +58,7 @@ export default {
     *
     * */
     getMoviesComments({movieId}) {
-        return request(URL.MOVIES_COMMENTS.replace(':movieId', movieId))
+        return request(URL.MOVIE_COMMENTS.replace(':movieId', movieId))
     },
 
     /*
@@ -69,7 +69,7 @@ export default {
     *
     * */
     getMovieDetails({movieId}) {
-        return request(URL.MOVIES_DETAILS.replace(':movieId', movieId))
+        return request(URL.MOVIE_DETAILS.replace(':movieId', movieId))
     }
 
 

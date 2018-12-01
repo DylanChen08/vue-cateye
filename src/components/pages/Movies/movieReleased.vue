@@ -1,7 +1,5 @@
 <template>
-    <div class="movieReleased" v-loading="loading" element-loading-text="拼命加载中"
-         element-loading-spinner="el-icon-loading"
-         element-loading-background="rgba(0, 0, 0, 0.8)">
+    <div class="movieReleased" v-loading="loading" :element-loading-text="loadingText">
         <section class="movie-description" ref="bsWrapper">
             <ul>
                 <router-link class="movie-list-block" v-for="value in moviesReleasedList"
@@ -33,6 +31,8 @@
                         </section>
                     </section>
                 </router-link>
+                <li class="loading-text" v-show="loading">正在加载...</li>
+                <li class="bottom-text" v-show="atBottom">--已经到底了--</li>
             </ul>
         </section>
     </div>
@@ -48,69 +48,96 @@
             return {
                 moviesReleasedList: [],  //正在上映电影列表
                 loading: null,
+                loadingText: '',//更改加载文字
+                page: 1,//判断页码
+                atBottom: false //判断是否到达底部(服务器返回数据为空)
             }
         },
         components: {},
         created() {
             this.loading = true
         },
-        computed: {
-            ...mapActions(['getMovieReleased'])
-        },
+        computed: {},
         methods: {
-            //初始化
+            ...mapActions(['getMovieReleased']),
+            //初始化better-scroll
             initScroll() {
                 let that = this
-                let options = {}
+                let options = {click: true, probeType: 3}
                 options.pullDownRefresh = {
                     threshold: 50,  // 当下拉到超过顶部 50px 时，触发 pullingDown 事件
                     stop: 20        // 刷新数据的过程中，回弹停留在距离顶部还有 20px 的位置
-                }
-                that.scroll = new BScroll(that.$refs.bsWrapper, {click: true, probeType: 2})
-                //重置scroll对象,提供触发下拉事件的参数
-                that.scroll = new BScroll(that.$refs.bsWrapper, options)
+                },
+                    options.pullUpLoad = {
+                        threshold: -20, // 在上拉到超过底部 20px 时，触发 pullingUp 事件
+                    },
+                    //初始化scroll对象,提供触发下拉事件的参数
+                    that.scroll = new BScroll(that.$refs.bsWrapper, options)
             },
 
             //下拉刷新
             pullDownRefresh() {
                 let that = this;
                 that.scroll.on('pullingDown', () => {
-                    this.loading = true
+                    that.loading = true;
                     // 刷新数据的过程中，回弹停留在距离顶部还有20px的位置
-                    that.getMovieReleased.then((res) => {
+                    that.getMovieReleased({page: that.page}).then((res) => {
                         if (res.status === 1 && res.msg === 'ok') {
-                            that.moviesReleasedList = res.data
-                            this.loading = false
+                            that.moviesReleasedList = res.data;
+                            that.loadingText = '正在刷新...';
+                            setTimeout(() => {
+                                that.loading = false
+                            }, 1000)
                         } else {
                             console.log('获取失败')
                         }
-                        console.log('res in scroll', res)
-                        console.log(that.loading)
-                        that.dateSorter = []            //每次刷新都重置数组
                         that.scroll.finishPullDown()    // 在刷新数据完成之后，调用 finishPullDown 方法，回弹到顶部
                     })
                 })
             },
+            //上拉加载
+            pullUpGetData() {
+                let that = this
+                this.scroll.on('pullingUp', () => {
+                    that.loadingText = '正在加载更多...';
+                    that.loading = true;
+                    setTimeout(() => {
+                        that.page++;
+                        that.getMovieReleased({page: that.page}).then(res => {
+                            console.log(res)
+                            if (res.status === 1 && res.msg == 'ok') {
+                                const data = res.data.map(x => {
+                                    that.moviesReleasedList.push(x)
+                                })
+                            } else {
+                                if (res.status === 1 && res.msg === 'empty') {
+                                    that.atBottom = true //显示已经到达底部
+                                }
+                            }
+                        })
+                        that.scroll.finishPullUp();
+                        that.loading = false
+                    }, 1000)
+                })
+            },
         },
         mounted() {
-            //调用下拉刷新并获取数据的方法
             let that = this
             that.$nextTick(() => {
                 that.loading = false
                 if (!that.scroll) {
                     that.initScroll()
                     that.pullDownRefresh()
-
+                    that.pullUpGetData()
                 } else {
                     that.scroll.refresh()
                 }
             })
             //DOM挂载完毕,渲染数据
-            that.getMovieReleased.then(res => {
+            that.getMovieReleased({page: that.page}).then(res => {
                 that.moviesReleasedList = res.data
             })
         }
-
     }
 </script>
 
@@ -120,7 +147,18 @@
         width 100%
         padding 0 1.25rem
         .movie-description
-            height 1vh
+            height 600px
+            overflow hidden
+            .loading-text
+                margin .5rem 0
+                text-align center
+                font-size 14px
+            .bottom-text
+                margin .5rem 0
+                text-align center
+                font-size 14px
+                letter-spacing .25rem
+                color #999
             .movie-list-block
                 display grid
                 grid auto / 24% 76%

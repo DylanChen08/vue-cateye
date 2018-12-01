@@ -213,5 +213,5 @@
         top 10%
         left 0
         width 100%
-        padding 0 0 6rem 0
+        /*padding 0 0 6rem 0*/
 </style>
