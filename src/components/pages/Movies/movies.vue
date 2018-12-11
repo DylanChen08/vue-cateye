@@ -45,17 +45,18 @@
                 this.$router.push({path: '/pages/movies/moviePreShows'});
                 this.enterAnimate = 'animated fadeInRight'
                 this.leaveAnimate = 'animated fadeOutLeft'
-                // this.enterAnimate = 'animated fadeInLeft'
-                // this.leaveAnimate = 'animated fadeOutRight'
                 this.statusBarOffset = 59.3608
             },
 
             checkCurrentRoute() {
-                if (this.view === 'movieReleased') {
-                    this.$router.push({path: '/pages/movies/movieReleased'});
-                } else {
-                    this.$router.push({path: '/pages/movies/moviePreShows'});
+                if (!this.view) {
+                    if (this.$route.path !== '/pages/movies/moviePreShows') {
+                        this.$router.push({path: '/pages/movies/movieReleased'});
+                    } else {
+                        this.$router.push({path: '/pages/movies/moviePreShows'});
+                    }
                 }
+
             },
 
 
@@ -213,5 +214,6 @@
         top 10%
         left 0
         width 100%
-        /*padding 0 0 6rem 0*/
+
+    /*padding 0 0 6rem 0*/
 </style>

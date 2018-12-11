@@ -97,18 +97,19 @@
                 tags: '',
             }
         },
-        computed: {...mapActions(['getMovieReleased', 'getMoviePreview'])},
+        computed: {...mapActions(['getMovieReleasedListAll', 'getMoviePreviewAll'])},
         mounted() {
-            this.getMovieReleased.then(res => {
+            this.getMovieReleasedListAll.then(res => {
                 // console.log("res333",res.data.length)
                 this.releasedList = res.data
             }).catch(e => {
                 console.log(e)
             })
 
-            this.getMoviePreview.then(res => {
+            this.getMoviePreviewAll.then(res => {
                 // console.log("res333",res)
                 this.previewList = res.data
+                console.log('首页', res)
             }).catch(e => {
                 console.log(e)
             })
@@ -122,7 +123,6 @@
     @import "../../../assets/css/lib/common.stylus"
     #indexMovies
         padding 0.88rem 0.88rem 10rem
-        border 1px solid red
         .hot-show, .pre-show
             margin-top .6rem
         section.hot-show-title, section.pre-show-title

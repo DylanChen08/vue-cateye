@@ -2,6 +2,8 @@
     <div>
         <!--轮播组件-->
         <carousel></carousel>
+        <!--首页的顶部工具栏-->
+        <indexTopFixBar></indexTopFixBar>
         <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="电影" name="first">
                 <!--首页/电影组件-->
@@ -18,6 +20,8 @@
 
     import carousel from './carousel'
     import indexMovies from './indexMovies'
+    import indexTopFixBar from './indexTopFixBar'
+    import indexSearch from './indexSearch'
 
     export default {
         name: "index",
@@ -28,11 +32,12 @@
         },
         components: {
             carousel,
-            indexMovies
+            indexMovies,
+            indexTopFixBar,
         },
         methods: {
             handleClick(tab, event) {
-                console.log(tab, event);
+                // console.log(tab, event);
             }
         },
 

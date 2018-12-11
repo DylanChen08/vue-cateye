@@ -46,6 +46,20 @@ const actions = {
         return res
     },
 
+    //获取全部未上映电影的数据
+
+    async getMoviePreviewAll() {
+        let res = await getData.getMoviePreviewListAll()
+        return res
+    },
+
+    //获取全部正在上映电影的数据
+
+    async getMovieReleasedListAll() {
+        let res = await getData.getMovieReleasedListAll()
+        return res
+    },
+
     //获取指定id的电影的细节
     async getMovieDetails({commit}, {movieId}) {
         let res = await getData.getMovieDetails({movieId})

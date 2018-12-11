@@ -65,7 +65,6 @@
                 this.$emit('toHotShow', [this.val, this.statusBarOffsetVal]);
                 this.$router.push({path: '/pages/movies/movieReleased'});
                 this.statusBarOffsetVal = 32
-                console.log(this.view)
             },
             onPreShow() {
                 this.$emit('toPreShow', [this.val, this.statusBarOffsetVal]);
@@ -73,11 +72,7 @@
                 this.$router.push({path: '/pages/movies/moviePreShows'});
             },
         },
-        watch: {
-            statusBarOffset() {
-                return this.statusBarOffsetVal
-            }
-        },
+        watch: {},
         mounted() {
         }
     }

@@ -4,6 +4,15 @@ $themeColorLighter = #999
 $themeBgColor = #f03d37
 $themeBgColorPrimary = #3a97e0
 
+//计算margin,padding
+calcOffset(x, y)
+  //x,y分别为l占视口宽度和高度的百分比,均为设计稿的标注值，单位px
+  //x:horizontal y:vertical
+  if x > 0
+    return x / 1080 * 100vw
+  if y > 0
+    return y / 1920 * 100vh
+
 *
   margin 0
   padding 0
@@ -63,8 +72,10 @@ html
   color #c0c4cc
   -webkit-transition .3s
   transition .3s
+
 .el-rate__text
   display none !important
+
 .icon
   width 1em
   height 1em
@@ -102,3 +113,6 @@ html
       fill $themeBgColor
     dd
       color $themeBgColor
+
+
+
