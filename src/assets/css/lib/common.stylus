@@ -1,8 +1,17 @@
+//颜色标准
 $themeColor = #333
 $themeColorLight = #696969
 $themeColorLighter = #999
 $themeBgColor = #f03d37
 $themeBgColorPrimary = #3a97e0
+
+//大小标准
+$biggestFontSize = 1.375rem
+$largerFontSize = 1.25rem
+$largeFontSize = 1.125rem
+$primaryFontSize = 1rem
+$smallFontSize = 0.875rem
+$smallestFontSize = 0.75rem
 
 //计算margin,padding
 calcOffset(x, y)

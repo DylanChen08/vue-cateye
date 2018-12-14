@@ -6,7 +6,6 @@
                 <input type="text" placeholder="找影视剧、影院、影人、图书">
             </div>
             <span class="cancel"><router-link to="/">取消</router-link></span>
-
         </section>
         <section class="categories">
             <router-link to="/">
@@ -25,7 +24,6 @@
                 <dt>xxx</dt>
                 <dd>资讯</dd>
             </router-link>
-
         </section>
     </div>
 </template>
@@ -46,7 +44,7 @@
             flex-direction row
             background #fafafa
             .search-wrap
-                width 82%
+                width 85%
                 padding calcOffset(0, 30) calcOffset(24, 0)
                 white-space nowrap
                 border 1px solid red
@@ -81,13 +79,14 @@
                 border 1px solid red
                 a
                     color $themeBgColor
-                    font-size .8rem
+                    font-size .85rem
 
         section.categories
             display flex
             flex-direction row
             justify-content space-between
             padding calcOffset(90, 0) calcOffset(0, 146)
+            background #ffffff
             a
                 width 20%
                 border 1px solid red
@@ -96,7 +95,7 @@
                 justify-content center
                 align-items: center
                 dd
-                    font-size 14px
+                    font-size $smallFontSize
                     white-space nowrap
                     border 1px solid red
 </style>

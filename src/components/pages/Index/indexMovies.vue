@@ -8,7 +8,7 @@
             </section>
             <ul class="hot-show-block-wrapper">
                 <li class="hot-show-block" v-for="(item,index) in releasedList" :key="item.id" v-if="index<12">
-                    <img :src="item.img" :alt="item.title"/>
+                    <img :src="item.img" :alt="item.nm"/>
                     <router-link :to="`/pages/movies/movieDetails/${item.id}`" class="hot-show-block-mask"
                                  tag="section">
                         <div class="tags-head">
@@ -24,7 +24,7 @@
                             <span v-if="!item.globalReleased" class="view-count">{{item.wish}}人想看</span>
                         </div>
                     </router-link>
-                    <h3 class="title">{{item.title}}</h3>
+                    <h3 class="title">{{item.nm}}</h3>
                     <router-link class="buy" to="/">购票</router-link>
                 </li>
                 <!--显示更多-->
@@ -65,7 +65,7 @@
                                     <span v-if="!value.showRate" class="view-count">{{value.viewCount}}人想看</span>
                                 </div>
                             </router-link>
-                            <h3 class="title">{{value.title}}</h3>
+                            <h3 class="title">{{value.nm}}</h3>
                             <h5>{{convertDate(value.pubDate)}}</h5>
                         </li>
                         <!--显示更多-->
@@ -129,10 +129,10 @@
             display flex
             justify-content space-between
             span
-                font-size 0.93rem
+                font-size $smallFontSize
                 font-weight bold
             a
-                font-size 0.81rem
+                font-size $smallestFontSize
                 color $themeColorLighter
 
     .hot-show-block-wrapper, .pre-show-block-wrapper
@@ -145,7 +145,7 @@
         display inline-block
         margin-right 0.6rem
         width 5.75rem
-        height 170px
+        height 186px
         .hot-show-block-mask-end, .pre-show-block-mask-end
             position absolute
             left 0
@@ -205,8 +205,12 @@
                     font-size .7rem
                     color #faaf00
         h3.title
+            width 75px
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
             padding .6rem 0
-            font-size .8rem
+            font-size $smallestFontSize
         a.buy
             margin-bottom 1rem
             padding 0.3rem 1.05rem

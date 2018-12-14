@@ -1,5 +1,5 @@
 <template>
-    <div class="moviePreview" v-loading="loading" :element-loading-text="loadingText">
+    <div class="moviePreview">
         <section class="movie-description" ref="bsWrapper">
             <ul>
                 <router-link class="movie-list-block" v-for="(value,index) in moviePreviewList" :key="value.id"
@@ -50,7 +50,6 @@
                 moviePreviewList: [], //未上映电影的列表
                 loading: null,
                 dateSorter: [],//日期分类
-                loadingText: '',//更改加载文字
                 page: 1,//判断页码
                 atBottom: false //判断是否到达底部(服务器返回数据为空)
             }

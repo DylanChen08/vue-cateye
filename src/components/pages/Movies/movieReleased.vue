@@ -1,5 +1,5 @@
 <template>
-    <div class="movieReleased" v-loading="loading" :element-loading-text="loadingText">
+    <div class="movieReleased">
         <section class="movie-description" ref="bsWrapper">
             <ul>
                 <router-link class="movie-list-block" v-for="value in moviesReleasedList"
@@ -48,7 +48,6 @@
             return {
                 moviesReleasedList: [],  //正在上映电影列表
                 loading: null,
-                loadingText: '',//更改加载文字
                 page: 1,//判断页码
                 atBottom: false //判断是否到达底部(服务器返回数据为空)
             }
