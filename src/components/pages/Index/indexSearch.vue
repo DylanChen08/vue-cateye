@@ -2,26 +2,46 @@
     <div id="indexSearch">
         <section class="top-fix-bar">
             <div class="search-wrap">
-                <span>xx</span>
+                <span>
+                     <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-search"></use>
+                    </svg>
+                </span>
                 <input type="text" placeholder="找影视剧、影院、影人、图书">
             </div>
             <span class="cancel"><router-link to="/">取消</router-link></span>
         </section>
         <section class="categories">
             <router-link to="/">
-                <dt>xxx</dt>
+                <dt>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-caidanicondianyinghui"></use>
+                    </svg>
+                </dt>
                 <dd>分类找片</dd>
             </router-link>
             <router-link to="/">
-                <dt>xxx</dt>
+                <dt>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-my"></use>
+                    </svg>
+                </dt>
                 <dd>影人</dd>
             </router-link>
             <router-link to="/">
-                <dt>xxx</dt>
+                <dt>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-cinema"></use>
+                    </svg>
+                </dt>
                 <dd>影院</dd>
             </router-link>
             <router-link to="/">
-                <dt>xxx</dt>
+                <dt>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-zixun"></use>
+                    </svg>
+                </dt>
                 <dd>资讯</dd>
             </router-link>
         </section>
@@ -39,7 +59,6 @@
     #indexSearch
         background #fff
         section.top-fix-bar
-            border 1px solid red
             display flex
             flex-direction row
             background #fafafa
@@ -47,7 +66,6 @@
                 width 85%
                 padding calcOffset(0, 30) calcOffset(24, 0)
                 white-space nowrap
-                border 1px solid red
                 position relative
                 span
                     width 10px
@@ -76,7 +94,6 @@
                 display flex
                 justify-content center
                 align-items center
-                border 1px solid red
                 a
                     color $themeBgColor
                     font-size .85rem
@@ -89,13 +106,20 @@
             background #ffffff
             a
                 width 20%
-                border 1px solid red
                 display flex
                 flex-direction column
                 justify-content center
                 align-items: center
+                dt
+                    box-shadow 0 0 8px #ddd
+                    padding 0.625rem
+                    border-radius 50%
+                    margin-bottom .85rem
+                    svg
+                        font-size: 1.125rem
+                        fill #333
                 dd
                     font-size $smallFontSize
                     white-space nowrap
-                    border 1px solid red
+                    color #333
 </style>

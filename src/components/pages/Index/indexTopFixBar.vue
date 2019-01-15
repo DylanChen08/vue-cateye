@@ -1,14 +1,26 @@
 <template>
     <div id="indexTopFixBar">
         <section class="region-wrapper">
-            <span>▼</span>
             <span class="region-text">东莞</span>
+            <span class="region-icn">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-down"></use>
+                </svg>
+            </span>
         </section>
         <router-link to="/pages/index/indexSearch" class="search" tag="section">
-            <span>☌</span>
+            <span>
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-search"></use>
+                </svg>
+            </span>
             <input type="text" placeholder="搜索影视剧、影人、影院、演出、图书">
         </router-link>
-        <section class="calendar">xxx</section>
+        <section class="calendar">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-Calandar"></use>
+            </svg>
+        </section>
     </div>
 </template>
 
@@ -33,18 +45,20 @@
         color #ffffff
         section.region-wrapper
             width 16%
-            /*border 1px solid red*/
+            background transparent
+            color #fff
             display flex
             .region-text
-                border 1px solid white
+                margin-right .25rem
+            .region-icn svg
+                font-size .75rem
         section.search
             width 68%
-            /*border 1px solid red*/
             position relative
             span
                 position absolute
-                top 0
-                left 0
+                top 16%
+                left 2%
                 color #666
                 z-index 1000
             input
@@ -68,6 +82,7 @@
                 transition border-color .2s cubic-bezier(.645, .045, .355, 1)
         section.calendar
             width 8.4%
-            border 1px solid red
-
+            display flex
+            justify-content center
+            align-items center
 </style>

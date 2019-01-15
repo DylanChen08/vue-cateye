@@ -92,7 +92,6 @@
                         if (res.status === 1 && res.msg === 'ok') {
                             that.dateSorter = [];//每次刷新都重置数组
                             that.moviePreviewList = res.data
-                            that.loadingText = '正在刷新...';
                             setTimeout(() => {
                                 this.loading = false
                             }, 1000)
@@ -110,7 +109,6 @@
             pullUpGetData() {
                 let that = this
                 this.scroll.on('pullingUp', () => {
-                    that.loadingText = '正在加载更多...';
                     that.loading = true;
                     setTimeout(() => {
                         that.page++;
