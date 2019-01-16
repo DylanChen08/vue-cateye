@@ -218,6 +218,4 @@
             background $themeBgColor
             color white
             border-radius .8rem
-
-
 </style>

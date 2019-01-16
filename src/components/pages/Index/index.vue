@@ -9,7 +9,9 @@
                 <!--首页/电影组件-->
                 <indexMovies></indexMovies>
             </el-tab-pane>
-            <el-tab-pane label="电视剧" name="second">电视剧</el-tab-pane>
+            <el-tab-pane label="电视剧" name="second">
+                <indexTvSeries></indexTvSeries>
+            </el-tab-pane>
             <el-tab-pane label="综艺" name="third">综艺</el-tab-pane>
             <el-tab-pane label="书籍" name="fourth">书籍</el-tab-pane>
         </el-tabs>
@@ -20,6 +22,7 @@
 
     import carousel from './carousel'
     import indexMovies from './indexMovies'
+    import indexTvSeries from './indexTvSeries'
     import indexTopFixBar from './indexTopFixBar'
     import indexSearch from './indexSearch'
 
@@ -34,6 +37,7 @@
             carousel,
             indexMovies,
             indexTopFixBar,
+            indexTvSeries
         },
         methods: {
             handleClick(tab, event) {

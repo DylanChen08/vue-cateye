@@ -72,28 +72,13 @@ const actions = {
         let res = await getData.getMoviesComments({movieId})
         commit('setMovieId', {movieId})
         return res
-    }
-    // getIndexTvList() {
-    //     return getData.getIndexTvList().then(() => {
-    //     }).catch((err) => {
-    //         // console.log('modules/getData.js/getIndexTvList error')
-    //         // console.log(err)
-    //     })
-    // },
-    // getIndexShowsList() {
-    //     return getData.getIndexShowsList().then(() => {
-    //     }).catch((err) => {
-    //         // console.log('modules/getData.js/getIndexShowsList error')
-    //         // console.log(err)
-    //     })
-    // },
-    // getIndexBookList() {
-    //     return getData.getIndexBooksList().then(() => {
-    //     }).catch((err) => {
-    //         // console.log('modules/getData.js/getIndexBookList error')
-    //         // console.log(err)
-    //     })
-    // }
+    },
+    //获取全部电视剧的数据
+
+    async getTvSeries() {
+        let res = await getData.getTvList()
+        return res
+    },
 }
 
 export default {

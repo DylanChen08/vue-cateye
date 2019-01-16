@@ -3,7 +3,7 @@ import request from '../helpers/request'
 const URL = {
     INDEX_CAROUSEL: 'common/carousel',
     INDEX_MOVIES: 'common/index',
-    INDEX_TV: 'index/tv',
+    TV: 'common/tv',
     INDEX_SHOWS: 'index/shows',
     INDEX_BOOKS: 'index/books',
     MOVIE_RELEASED: 'common/released/:page',
@@ -11,7 +11,7 @@ const URL = {
     MOVIE_PREVIEW: 'common/preview/:page',
     MOVIE_PREVIEW_ALL: 'common/preview',
     MOVIE_DETAILS: 'common/movies/:movieId',
-    MOVIE_COMMENTS: 'common/comments/:movieId',
+    MOVIE_COMMENTS: 'common/comments/:movieId'
 }
 
 
@@ -24,8 +24,8 @@ export default {
     getCarousel() {
         return request(URL.INDEX_CAROUSEL)
     },
-    getIndexTvList() {
-        return request(URL.INDEX_TV)
+    getTvList() {
+        return request(URL.TV)
     },
     getIndexShowsList() {
         return request(URL.INDEX_SHOWS)

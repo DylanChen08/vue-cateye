@@ -37,7 +37,6 @@
         left 0
         width 100%
         padding 1rem .8rem
-        /*border 1px solid red*/
         z-index 9999
         display flex
         flex-direction row
