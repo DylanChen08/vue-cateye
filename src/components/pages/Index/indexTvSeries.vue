@@ -3,7 +3,7 @@
         <!--正在上映-->
         <div class="hot-show">
             <section class="hot-show-title">
-                <span>正在热映</span>
+                <span>正在热播</span>
                 <router-link to="/pages/movies/movieReleased"> 全部{{tvList.length}}部>></router-link>
             </section>
             <ul class="hot-show-block-wrapper">

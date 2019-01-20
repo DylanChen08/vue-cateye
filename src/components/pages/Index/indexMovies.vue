@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="tags-end">
                                     <span v-if="value.showRate" class="rate">猫眼评分{{value.score}}</span>
-                                    <span v-if="!value.showRate" class="view-count">{{value.viewCount}}人想看</span>
+                                    <span v-if="!value.showRate" class="view-count">{{value.wish}}人想看</span>
                                 </div>
                             </router-link>
                             <h3 class="title">{{value.nm}}</h3>
