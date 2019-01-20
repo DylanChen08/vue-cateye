@@ -14,7 +14,7 @@
                     <use xlink:href="#icon-search"></use>
                 </svg>
             </span>
-            <input type="text" placeholder="搜索影视剧、影人、影院、演出、图书">
+            <input type="text" placeholder="搜影视剧、影人、影院、演出、图书">
         </router-link>
         <section class="calendar">
             <svg class="icon" aria-hidden="true">
@@ -72,7 +72,7 @@
                 border 1px solid #dcdfe6
                 box-sizing border-box
                 color #606266
-                font-size 13px
+                font-size 12px
                 display inline-block
                 outline none
                 padding 0.5rem 0.5rem 0.5rem 1.85rem;

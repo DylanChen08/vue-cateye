@@ -4,6 +4,7 @@ const URL = {
     INDEX_CAROUSEL: 'common/carousel',
     INDEX_MOVIES: 'common/index',
     TV: 'common/tv',
+    TV_DETAILS: 'common/tv/:tvId',
     INDEX_SHOWS: 'index/shows',
     INDEX_BOOKS: 'index/books',
     MOVIE_RELEASED: 'common/released/:page',
@@ -27,6 +28,19 @@ export default {
     getTvList() {
         return request(URL.TV)
     },
+
+    /*
+    * 获取指定单个电视剧详情
+    * 包括正在上映,未上映的电视剧
+    * @params:tvId
+    * @method:get
+    *
+    * */
+    getTvDetails({tvId}) {
+        return request(URL.TV_DETAILS.replace(':tvId', tvId))
+    },
+
+
     getIndexShowsList() {
         return request(URL.INDEX_SHOWS)
     },
@@ -93,7 +107,9 @@ export default {
     * */
     getMovieDetails({movieId}) {
         return request(URL.MOVIE_DETAILS.replace(':movieId', movieId))
-    }
+    },
+
+
 
 
 }

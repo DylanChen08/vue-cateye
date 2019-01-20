@@ -2,11 +2,13 @@ import getData from '../../api/getData'
 
 const state = {
     movieId: null,
+    tvId: null,
     previewPage: 1,
     releasedPage: 1,
 }
 const getters = {
     movieId: state => state.movieId,
+    tvId: state => state.tvId,
 }
 const mutations = {
     setMovieId(state, payload) {
@@ -18,6 +20,9 @@ const mutations = {
     setReleasedPage(state, payload) {
         state.releasedPage = payload.releasedPage
     },
+    setTvId(state, payload) {
+        state.tvId = payload.tvId
+    }
 
 }
 const actions = {
@@ -77,6 +82,12 @@ const actions = {
 
     async getTvSeries() {
         let res = await getData.getTvList()
+        return res
+    },
+    //获取指定id的电视剧的细节
+    async getTvDetails({commit}, {tvId}) {
+        let res = await getData.getTvDetails({tvId})
+        commit('setTvId', {tvId})
         return res
     },
 }

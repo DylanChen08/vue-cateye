@@ -81,6 +81,12 @@ const routes = [
         component: () => import( '../components/pages/Movies/movieDetails.vue'), //获取单个电影详情
     },
     {
+        path: '/pages/tv/tvSeriesDetails/:tvId',
+        name: 'tvSeriesDetails',
+        component: () => import( '../components/pages/TvSeries/TvSeriesDetails.vue'), //获取单个电影详情
+    },
+
+    {
         path: '/pages/personal-center',
         name: 'personal-center',
         meta: {showBottomBar: true},

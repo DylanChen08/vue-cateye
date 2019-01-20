@@ -1,8 +1,8 @@
-<!--电影详情页-->
+<!--电视剧详情页-->
 <template>
     <div class="movie-details">
         <!--背景遮罩-->
-        <div class="filter-bg"><img :src="moviesDetails.img" alt=""></div>
+        <div class="filter-bg"><img :src="TvSeriesDetails.img" alt=""></div>
         <div class="movie-details-topBar">
             <template>
                 <div class="primary">
@@ -23,36 +23,27 @@
             </template>
         </div>
         <section class="details-block">
-            <!--<div class="filter-bg"><img :src="moviesDetails.img" alt=""></div>-->
+            <!--<div class="filter-bg"><img :src="TvSeriesDetails.img" alt=""></div>-->
             <div class="details-block-layer">
                 <div class="image-video-wrapper">
-                    <img :src="moviesDetails.img" :alt="moviesDetails.nm">
+                    <img :src="TvSeriesDetails.img" :alt="TvSeriesDetails.nm">
                 </div>
                 <ul class="details-list">
                     <li class="title">
-                        <h3>{{moviesDetails.nm}}</h3>
+                        <h3>{{TvSeriesDetails.nm}}</h3>
                     </li>
                     <li class="alias-title">
                         <h4></h4>
                     </li>
-                    <li class="tags">
-                        {{moviesDetails.cat}}
-                        <span class="version">
-                            {{tags.slice(0,8).replace('/',' ')}}
-                        </span>
-                        <span class="version">
-                            {{tags.slice(10,15).replace('/','')}}
-                        </span>
-                    </li>
-                    <li class="region-duration">{{moviesDetails.fra}}/{{moviesDetails.dur}}分钟</li>
-                    <li class="released-time">{{moviesDetails.showTimeInfo}}</li>
-                    <li class="wish-count"><span class="count">{{moviesDetails.wish}}</span>人想看</li>
+                    <!--<li class="region-duration">{{TvSeriesDetails.fra}}/{{TvSeriesDetails.dur}}分钟</li>-->
+                    <li class="released-time">{{TvSeriesDetails.info}}</li>
+                    <li class="wish-count"><span class="count">{{TvSeriesDetails.wish}}</span>人想看</li>
                 </ul>
             </div>
             <section class="rate-block" v-show="score!==0">
                 <div class="band">
                     <figure>
-                        <img src="http://maoyan.com/favicon.ico" width="30" height="30" alt="xxx">
+                        <img src="http://maoyan.com/favicon.ico" width="30" height="30" alt="xx">
                         <figcaption>
                             口碑
                         </figcaption>
@@ -79,7 +70,7 @@
                     </div>
 
                 </div>
-                <router-link class="rate-star" :to="`/pages/movies/comments/${moviesDetails.id}`" tag="div">
+                <router-link class="rate-star" :to="`/pages/movies/comments/${TvSeriesDetails.id}`" tag="div">
                     <span class="title">猫眼评分</span>
                     <span class="score-star">
                         <span class="sc-num">{{rawScore}}</span>
@@ -105,10 +96,10 @@
 
 
     export default {
-        name: "moviesDetails",
+        name: "TvSeriesDetails",
         data() {
             return {
-                moviesDetails: '',
+                TvSeriesDetails: '',
                 tags: '',
                 rawScore: null, //原生分数
                 score: null     //分值转换适合element-ui
@@ -120,24 +111,24 @@
         },
         computed: {},
         methods: {
-            ...mapActions(['getMovieDetails']),
+            ...mapActions(['getTvDetails']),
             backToPrevious() {
                 //返回上一级
                 this.$router.go(-1)
             },
             showScore() {
-                this.rawScore = this.moviesDetails.sc  //原生分数
-                this.score = this.moviesDetails.sc / 2  //分值转换适合elementUI
+                this.rawScore = this.TvSeriesDetails.sc  //原生分数
+                this.score = this.TvSeriesDetails.sc / 2  //分值转换适合elementUI
             }
         },
         mounted() {
-            let movieId = this.$route.params.movieId
-            console.log('sending movie`s ID request')
+            let tvId = this.$route.params.tvId
+            console.log('sending tv series`s ID request')
             console.log(this.$route)
-            this.getMovieDetails({movieId}).then(res => {
-                console.log('res', res)
-                this.moviesDetails = res.data[0]
-                this.tags = this.moviesDetails.ver    //防止处理模板变量时,报错undefined
+            this.getTvDetails({tvId}).then(res => {
+                console.log('getTvDetails res', res)
+                this.TvSeriesDetails = res.data[0]
+                this.tags = this.TvSeriesDetails.ver    //防止处理模板变量时,报错undefined
                 this.showScore() //分数转换
             })
         }

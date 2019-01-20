@@ -9,7 +9,7 @@
             <ul class="hot-show-block-wrapper">
                 <li class="hot-show-block" v-for="(item,index) in tvList" :key="item.id" v-if="index<12">
                     <img :src="item.img" :alt="item.nm"/>
-                    <router-link :to="`/pages/movies/movieDetails/${item.id}`" class="hot-show-block-mask"
+                    <router-link :to="`/pages/tv/tvSeriesDetails/${item.id}`" class="hot-show-block-mask"
                                  tag="section">
                         <div class="tags-end">
                             <span  class="rate">猫眼评分{{item.sc}}</span>
@@ -17,7 +17,7 @@
                         </div>
                     </router-link>
                     <h3 class="title">{{item.nm}}</h3>
-                    <router-link class="buy" to="/">观看</router-link>
+                    <router-link class="buy" to="/">详情</router-link>
                 </li>
                 <!--显示更多-->
                 <li class="hot-show-block-end">
@@ -47,8 +47,8 @@
         computed: {...mapActions(['getTvSeries'])},
         mounted() {
             this.getTvSeries.then(res => {
-                // console.log("res333",res.data.length)
                 this.tvList = res.data
+                console.log('getTvSeries res' , res.data)
             }).catch(e => {
                 console.log(e)
             })
