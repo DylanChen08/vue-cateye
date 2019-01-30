@@ -6,7 +6,11 @@
         <div class="movie-details-topBar">
             <template>
                 <div class="primary">
-                    <p class="back" @click="backToPrevious"><</p>
+                    <p class="back" @click="backToPrevious">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-left"></use>
+                        </svg>
+                    </p>
                     <span class="title"><h5>电影</h5></span>
                     <router-link class="share" to="/">分享</router-link>
                 </div>

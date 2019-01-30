@@ -13,7 +13,9 @@
                 <indexTvSeries></indexTvSeries>
             </el-tab-pane>
             <el-tab-pane label="综艺" name="third">综艺</el-tab-pane>
-            <el-tab-pane label="书籍" name="fourth">书籍</el-tab-pane>
+            <el-tab-pane label="书籍" name="fourth">
+                <indexBooks></indexBooks>
+            </el-tab-pane>
         </el-tabs>
     </div>
 </template>
@@ -25,6 +27,7 @@
     import indexTvSeries from './indexTvSeries'
     import indexTopFixBar from './indexTopFixBar'
     import indexSearch from './indexSearch'
+    import indexBooks from './indexBooks'
 
     export default {
         name: "index",
@@ -37,7 +40,8 @@
             carousel,
             indexMovies,
             indexTopFixBar,
-            indexTvSeries
+            indexTvSeries,
+            indexBooks
         },
         methods: {
             handleClick(tab, event) {

@@ -2,17 +2,16 @@ import request from '../helpers/request'
 
 const URL = {
     INDEX_CAROUSEL: 'common/carousel',
-    INDEX_MOVIES: 'common/index',
     TV: 'common/tv',
     TV_DETAILS: 'common/tv/:tvId',
-    INDEX_SHOWS: 'index/shows',
-    INDEX_BOOKS: 'index/books',
+    BOOKS: 'common/books',
+    BOOK_DETAILS: 'common/books/:bookId',
     MOVIE_RELEASED: 'common/released/:page',
     MOVIE_RELEASED_ALL: 'common/released',
     MOVIE_PREVIEW: 'common/preview/:page',
     MOVIE_PREVIEW_ALL: 'common/preview',
     MOVIE_DETAILS: 'common/movies/:movieId',
-    MOVIE_COMMENTS: 'common/comments/:movieId'
+    MOVIE_COMMENTS: 'common/comments/:movieId',
 }
 
 
@@ -38,15 +37,6 @@ export default {
     * */
     getTvDetails({tvId}) {
         return request(URL.TV_DETAILS.replace(':tvId', tvId))
-    },
-
-
-    getIndexShowsList() {
-        return request(URL.INDEX_SHOWS)
-    },
-
-    getIndexBooksList() {
-        return request(URL.INDEX_BOOKS)
     },
 
     /*
@@ -107,6 +97,26 @@ export default {
     * */
     getMovieDetails({movieId}) {
         return request(URL.MOVIE_DETAILS.replace(':movieId', movieId))
+    },
+
+
+    /*
+    * 获取全部书籍信息
+    * @methods:get
+    *
+    * */
+    getBookList() {
+        return request(URL.BOOKS)
+    },
+
+    /*
+    * 获取指定单个书籍详情
+    * @params:bookId
+    * @method:get
+    *
+    * */
+    getBookDetails({bookId}) {
+        return request(URL.BOOK_DETAILS.replace(':bookId', bookId))
     },
 
 

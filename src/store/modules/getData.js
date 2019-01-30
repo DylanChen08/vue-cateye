@@ -90,6 +90,19 @@ const actions = {
         commit('setTvId', {tvId})
         return res
     },
+
+    //获取全部书籍的数据
+
+    async getBooks() {
+        let res = await getData.getBookList()
+        return res
+    },
+    //获取指定id的电视剧的细节
+    async getBookDetails({commit}, {bookId}) {
+        let res = await getData.getBookDetails({bookId})
+        commit('setBookId', {bookId})
+        return res
+    },
 }
 
 export default {
