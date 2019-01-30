@@ -1,10 +1,10 @@
 <template>
-    
+    <div>show</div>
 </template>
 
 <script>
     export default {
-        name: "indexVarietyShows"
+        name: "shows"
     }
 </script>
 
