@@ -3,6 +3,7 @@ import getData from '../../api/getData'
 const state = {
     movieId: null,
     tvId: null,
+    bookId:null,
     previewPage: 1,
     releasedPage: 1,
 }
@@ -22,7 +23,10 @@ const mutations = {
     },
     setTvId(state, payload) {
         state.tvId = payload.tvId
-    }
+    },
+    setBookId(state, payload) {
+        state.bookId = payload.bookId
+    },
 
 }
 const actions = {
@@ -101,6 +105,17 @@ const actions = {
     async getBookDetails({commit}, {bookId}) {
         let res = await getData.getBookDetails({bookId})
         commit('setBookId', {bookId})
+        return res
+    },  //获取全部书籍的数据
+
+    async getShows() {
+        let res = await getData.getShowList()
+        return res
+    },
+    //获取指定id的电视剧的细节
+    async getShowDetails({commit}, {showId}) {
+        let res = await getData.getShowDetails({showId})
+        commit('setShowId', {showId})
         return res
     },
 }

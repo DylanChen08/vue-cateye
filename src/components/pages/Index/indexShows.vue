@@ -4,12 +4,12 @@
         <div class="hot-show">
             <section class="hot-show-title">
                 <span>畅销书籍</span>
-                <router-link to="/pages/movies/movieReleased"> 全部{{bookList.length}}部>></router-link>
+                <router-link to="/pages/movies/movieReleased"> 全部{{showList.length}}部>></router-link>
             </section>
             <ul class="hot-show-block-wrapper">
-                <li class="hot-show-block" v-for="(item,index) in bookList" :key="item.id" v-if="index<12">
+                <li class="hot-show-block" v-for="(item,index) in showList" :key="item.id" v-if="index<12">
                     <img :src="item.img" :alt="item.nm"/>
-                    <router-link :to="`/pages/books/bookDetails/${item.id}`" class="hot-show-block-mask"
+                    <router-link :to="`/pages/shows/showDetails/${item.id}`" class="hot-show-block-mask"
                                  tag="section">
                         <div class="tags-end">
                             <span  class="rate">猫眼评分{{item.sc}}</span>
@@ -17,14 +17,14 @@
                         </div>
                     </router-link>
                     <h3 class="title">{{item.nm}}</h3>
-                    <router-link class="buy" :to="`/pages/books/bookDetails/${item.id}`">详情</router-link>
+                    <router-link class="buy" :to="`/pages/shows/showDetails/${item.id}`">详情</router-link>
                 </li>
                 <!--显示更多-->
                 <li class="hot-show-block-end">
                     <router-link to="/pages/movies/movieReleased" class="hot-show-block-mask-end">
                         <section class="inner-text">
                             <span>查看全部</span>
-                            <span>{{bookList.length}}部</span>
+                            <span>{{showList.length}}部</span>
                         </section>
                     </router-link>
                 </li>
@@ -37,17 +37,17 @@
     import {mapActions} from 'vuex'
 
     export default {
-        name: "indexBooks",
+        name: "indexShows",
         data() {
             return {
-                bookList: ''
+                showList: ''
             }
         },
-        computed: {...mapActions(['getBooks'])},
+        computed: {...mapActions(['getShows'])},
         mounted() {
-            this.getBooks.then(res => {
-                this.bookList = res.data
-                console.log('getBooks res' , res.data)
+            this.getShows.then(res => {
+                this.showList = res.data
+                console.log('index getShows res' , res.data)
             }).catch(e => {
                 console.log(e)
             })

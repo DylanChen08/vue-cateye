@@ -2,7 +2,7 @@
 <template>
     <div class="movie-details">
         <!--背景遮罩-->
-        <div class="filter-bg"><img :src="bookDetails.img" alt=""></div>
+        <div class="filter-bg"><img :src="showDetails.img" alt=""></div>
         <div class="movie-details-topBar">
             <template>
                 <div class="primary">
@@ -39,20 +39,20 @@
             </template>
         </div>
         <section class="details-block">
-            <div class="filter-bg"><img :src="bookDetails.img" alt=""></div>
+            <div class="filter-bg"><img :src="showDetails.img" alt=""></div>
             <div class="details-block-layer">
                 <div class="image-video-wrapper">
-                    <img :src="bookDetails.img" :alt="bookDetails.nm">
+                    <img :src="showDetails.img" :alt="showDetails.nm">
                 </div>
                 <ul class="details-list">
                     <li class="title">
-                        <h3>{{bookDetails.nm}}</h3>
+                        <h3>{{showDetails.nm}}</h3>
                     </li>
                     <li class="alias-title">
                         <h4></h4>
                     </li>
-                    <li class="released-time">{{bookDetails.info}}</li>
-                    <li class="wish-count"><span class="count">{{bookDetails.wish}}</span>人想看</li>
+                    <li class="released-time">{{showDetails.info}}</li>
+                    <li class="wish-count"><span class="count">{{showDetails.wish}}</span>人想看</li>
                 </ul>
             </div>
             <section class="rate-block" v-show="score!==0">
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                 </div>
-                <router-link class="rate-star" :to="`/pages/movies/comments/${bookDetails.id}`" tag="div">
+                <router-link class="rate-star" :to="`/pages/movies/comments/${showDetails.id}`" tag="div">
                     <span class="title">猫眼评分</span>
                     <span class="score-star">
                         <span class="sc-num">{{rawScore}}</span>
@@ -106,14 +106,13 @@
 
 <script>
     import {mapActions} from 'vuex'
-    import getData from '../../../api/getData'
 
 
     export default {
-        name: "bookDetails",
+        name: "showDetails",
         data() {
             return {
-                bookDetails: '',
+                showDetails: '',
                 tags: '',
                 rawScore: null, //原生分数
                 score: null     //分值转换适合element-ui
@@ -125,23 +124,23 @@
         },
         computed: {},
         methods: {
-            ...mapActions(['getBookDetails']),
+            ...mapActions(['getShowDetails']),
             backToPrevious() {
                 //返回上一级
                 this.$router.go(-1)
             },
             showScore() {
-                this.rawScore = this.bookDetails.sc  //原生分数
-                this.score = this.bookDetails.sc / 2  //分值转换适合elementUI
+                this.rawScore = this.showDetails.sc  //原生分数
+                this.score = this.showDetails.sc / 2  //分值转换适合elementUI
             }
         },
         mounted() {
-            let bookId = this.$route.params.bookId
+            let showId = this.$route.params.showId
             console.log(this.$route)
-            this.getBookDetails({bookId}).then(res => {
-                console.log('getBooks res', res)
-                this.bookDetails = res.data[0]
-                this.tags = this.bookDetails.ver    //防止处理模板变量时,报错undefined
+            this.getShowDetails({showId}).then(res => {
+                console.log('getShows res', res)
+                this.showDetails = res.data[0]
+                this.tags = this.showDetails.ver    //防止处理模板变量时,报错undefined
                 this.showScore() //分数转换
             })
         }

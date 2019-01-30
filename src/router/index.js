@@ -46,7 +46,7 @@ const routes = [
             }, {
                 path: '/pages/index/indexVarietyShows',
                 name: 'indexVarietyShows',
-                component: () => import( '../components/pages/Index/indexVarietyShows.vue'),//首页-综艺
+                component: () => import( '../components/pages/Index/indexShows.vue'),//首页-综艺
             },
         ]
     },
@@ -90,6 +90,12 @@ const routes = [
         name: 'bookDetails',
         component: () => import( '../components/pages/Books/bookDetails.vue'), //获取单个书籍详情
     },
+    {
+        path: '/pages/shows/showDetails/:showId',
+        name: 'showDetails',
+        component: () => import( '../components/pages/Shows/showDetails.vue'), //获取单个书籍详情
+    },
+
 
     {
         path: '/pages/personal-center',
