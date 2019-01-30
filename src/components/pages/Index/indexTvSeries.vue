@@ -12,12 +12,12 @@
                     <router-link :to="`/pages/tv/tvSeriesDetails/${item.id}`" class="hot-show-block-mask"
                                  tag="section">
                         <div class="tags-end">
-                            <span  class="rate">猫眼评分{{item.sc}}</span>
+                            <span class="rate">猫眼评分{{item.sc}}</span>
                             <!--<span v-if="!item.globalReleased" class="view-count">{{item.wish}}人想看</span>-->
                         </div>
                     </router-link>
                     <h3 class="title">{{item.nm}}</h3>
-                    <router-link class="buy" to="/">详情</router-link>
+                    <router-link class="buy" :to="`/pages/tv/tvSeriesDetails/${item.id}`">详情</router-link>
                 </li>
                 <!--显示更多-->
                 <li class="hot-show-block-end">
@@ -48,7 +48,7 @@
         mounted() {
             this.getTvSeries.then(res => {
                 this.tvList = res.data
-                console.log('getTvSeries res' , res.data)
+                console.log('getTvSeries res', res.data)
             }).catch(e => {
                 console.log(e)
             })
@@ -62,14 +62,18 @@
     @import "../../../assets/css/lib/common.stylus"
     #indexMovies
         padding 0.88rem 0.88rem 10rem
+
         .hot-show, .pre-show
             margin-top .6rem
+
         section.hot-show-title, section.pre-show-title
             display flex
             justify-content space-between
+
             span
                 font-size $smallFontSize
                 font-weight bold
+
             a
                 font-size $smallestFontSize
                 color $themeColorLighter
@@ -85,6 +89,7 @@
         margin-right 0.6rem
         width 5.75rem
         height 186px
+
         .hot-show-block-mask-end, .pre-show-block-mask-end
             position absolute
             left 0
@@ -95,9 +100,11 @@
             display flex
             justify-content center
             align-items center
+
             section
                 display flex
                 flex-direction column
+
                 span
                     text-align center
                     margin .5rem 0
@@ -108,16 +115,19 @@
         display inline-block
         margin-right 0.6rem
         width 5.75rem
+
         img
             width 100%
             height 8.04rem
             border-radius 0.2rem
+
         .hot-show-block-mask, .pre-show-block-mask
             position absolute
             left 0
             top 0
             width 100%
             height 8.04rem
+
             .tags-head
                 position absolute
                 left 0
@@ -125,6 +135,7 @@
                 display flex
                 flex-wrap wrap
                 width 43%
+
                 span
                     padding .2rem
                     font-weight bold
@@ -132,17 +143,21 @@
                     color #b3afb0
                     opacity .9
                     background #38383e
+
                 span + span
                     margin-top .1rem
+
             .tags-end
                 position absolute
                 left 0
                 bottom 0
+
                 span
                     padding .2rem
                     font-weight bold
                     font-size .7rem
                     color #faaf00
+
         h3.title
             width 75px
             overflow hidden
@@ -150,6 +165,7 @@
             white-space nowrap
             padding .6rem 0
             font-size $smallestFontSize
+
         a.buy
             margin-bottom 1rem
             padding 0.3rem 1.05rem

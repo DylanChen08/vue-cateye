@@ -2,7 +2,7 @@
 <template>
     <div class="movie-details">
         <!--背景遮罩-->
-        <div class="filter-bg"><img :src="bookDetails.img" alt=""></div>
+        <div class="filter-bg"><img :src="varietyShowDetails.img" alt=""></div>
         <div class="movie-details-topBar">
             <template>
                 <div class="primary">
@@ -39,20 +39,20 @@
             </template>
         </div>
         <section class="details-block">
-            <div class="filter-bg"><img :src="bookDetails.img" alt=""></div>
+            <div class="filter-bg"><img :src="varietyShowDetails.img" alt=""></div>
             <div class="details-block-layer">
                 <div class="image-video-wrapper">
-                    <img :src="bookDetails.img" :alt="bookDetails.nm">
+                    <img :src="varietyShowDetails.img" :alt="varietyShowDetails.nm">
                 </div>
                 <ul class="details-list">
                     <li class="title">
-                        <h3>{{bookDetails.nm}}</h3>
+                        <h3>{{varietyShowDetails.nm}}</h3>
                     </li>
                     <li class="alias-title">
                         <h4></h4>
                     </li>
-                    <li class="released-time">{{bookDetails.info}}</li>
-                    <li class="wish-count"><span class="count">{{bookDetails.wish}}</span>人想看</li>
+                    <li class="released-time">{{varietyShowDetails.info}}</li>
+                    <li class="wish-count"><span class="count">{{varietyShowDetails.wish}}</span>人想看</li>
                 </ul>
             </div>
             <section class="rate-block" v-show="score!==0">
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                 </div>
-                <router-link class="rate-star" :to="`/pages/movies/comments/${bookDetails.id}`" tag="div">
+                <router-link class="rate-star" :to="`/pages/movies/comments/${varietyShowDetails.id}`" tag="div">
                     <span class="title">猫眼评分</span>
                     <span class="score-star">
                         <span class="sc-num">{{rawScore}}</span>
@@ -110,10 +110,10 @@
 
 
     export default {
-        name: "bookDetails",
+        name: "varietyShowDetails",
         data() {
             return {
-                bookDetails: '',
+                varietyShowDetails: '',
                 tags: '',
                 rawScore: null, //原生分数
                 score: null     //分值转换适合element-ui
@@ -125,23 +125,23 @@
         },
         computed: {},
         methods: {
-            ...mapActions(['getBookDetails']),
+            ...mapActions(['getShowDetails']),
             backToPrevious() {
                 //返回上一级
                 this.$router.go(-1)
             },
             showScore() {
-                this.rawScore = this.bookDetails.sc  //原生分数
-                this.score = this.bookDetails.sc / 2  //分值转换适合elementUI
+                this.rawScore = this.varietyShowDetails.sc  //原生分数
+                this.score = this.varietyShowDetails.sc / 2  //分值转换适合elementUI
             }
         },
         mounted() {
-            let bookId = this.$route.params.bookId
+            let showId = this.$route.params.showId
             console.log(this.$route)
-            this.getBookDetails({bookId}).then(res => {
-                console.log('getBooks res', res)
-                this.bookDetails = res.data[0]
-                this.tags = this.bookDetails.ver    //防止处理模板变量时,报错undefined
+            this.getShowDetails({showId}).then(res => {
+                console.log('getShowDetails res', res)
+                this.varietyShowDetails = res.data[0]
+                this.tags = this.varietyShowDetails.ver    //防止处理模板变量时,报错undefined
                 this.showScore() //分数转换
             })
         }

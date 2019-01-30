@@ -90,18 +90,17 @@ const routes = [
         name: 'bookDetails',
         component: () => import( '../components/pages/Books/bookDetails.vue'), //获取单个书籍详情
     },
+    {
+        path: '/pages/shows/showDetails/:showId',
+        name: 'showDetails',
+        component: () => import( '../components/pages/VarietyShows/varietyShowDetails.vue'), //获取单个综艺详情
+    },
 
     {
         path: '/pages/personal-center',
         name: 'personal-center',
         meta: {showBottomBar: true},
         component: () => import( '../components/pages/PersonalCenter/personalCenter.vue') //个人中心
-    },
-    {
-        path: '/pages/shows',
-        name: 'shows',
-        meta: {showBottomBar: true},
-        component: () => import( '../components/pages/Shows/shows.vue') //演出组件
     },
     {
         path: '/pages/movies/comments/:movieId',

@@ -152,6 +152,7 @@
 <style lang="stylus" scoped>
     .movie-details
         padding 0 0.8rem 0.7rem
+
         .filter-bg
             display grid
             grid 20rem / 1fr
@@ -164,11 +165,13 @@
             overflow hidden
             filter blur(1.5rem)
             opacity .9
+
             img
                 width 100%
                 height 100%
                 grid-column 1 / auto
                 grid-row 1
+
         .movie-details-topBar
             position fixed
             top 0
@@ -176,9 +179,11 @@
             width 100%
             padding 0 0.8rem
             z-index 9999
+
             .primary
                 display grid
                 grid 3rem / 3rem auto 3rem
+
                 .back
                     grid-column 1
                     grid-row 1
@@ -187,6 +192,7 @@
                     align-items center
 
                     color white
+
                 .title
                     grid-column 2
                     grid-row 1
@@ -195,6 +201,7 @@
                     align-items center
 
                     color white
+
                     h5
                         padding .2rem .8rem
                         border-radius 1rem
@@ -203,6 +210,7 @@
                         background rgb(82, 89, 87)
                         opacity .3
                         color rgb(196, 198, 202)
+
                 .share
                     grid-column 3
                     grid-row 1
@@ -211,8 +219,10 @@
                     align-items center
                     color white
                     text-align right
+
         .details-block
             z-index 10
+
             h5
                 padding .2rem .8rem
                 border-radius 1rem
@@ -221,24 +231,30 @@
                 background rgb(82, 89, 87)
                 opacity .3
                 color rgb(196, 198, 202)
+
         .details-block-layer
             margin-top 3rem
             display grid
             grid 8rem / 5.8rem auto
             color #fff
+
             .image-video-wrapper
                 grid-column 1
                 grid-row 1
+
                 img
                     width 100%
                     height 100%
+
             .details-list
                 padding-left.75rem
                 grid-column 2
                 grid-row 1
+
                 .title
                     color #fff
                     margin-top 0.25rem
+
                 .tags
                 .region-duration
                 .released-time
@@ -246,12 +262,15 @@
                     color #fff
                     opacity .8
                     font-size .85rem
+
                 .region-duration
                 .released-time
                 .wish-count
                     margin-top 0.25rem
+
                 .tags
                     margin-top 0.75rem
+
                     .version
                         padding .2rem .4rem
                         background #5f5d62
@@ -260,15 +279,18 @@
                         font-size 0.65rem
                         margin-left .25rem
                         border-radius .15rem
+
                 .wish-count .count
                     margin-right .35rem
                     color #fc0
                     font-size 1.2rem
+
         .rate-block
             display flex
             flex-direction row
             width 100%
             margin-top .7rem
+
             .band
                 display flex
                 justify-content center
@@ -280,10 +302,12 @@
                 border-right 1px solid #ddd
                 border-top-left-radius .25rem
                 border-bottom-left-radius .25rem
+
                 figcaption
                     font-weight bold
                     font-size 0.85rem
                     letter-spacing .1rem
+
             .rate-percentage
                 width 56%
                 padding-top .25rem
@@ -292,6 +316,7 @@
                 background rgba(255, 255, 255, 0.2)
                 border-top-right-radius 0.25rem
                 border-bottom-right-radius 0.25rem
+
             .rate-percentage-wrapper
                 display flex
                 flex-direction row
@@ -299,10 +324,13 @@
                 align-items center
                 margin .35rem .35rem .35rem .85rem
                 color #fff
+
                 .title
                     width 30%
+
                 .progress-bar
                     width 70%
+
             .rate-star
                 width 33%
                 display flex
@@ -313,23 +341,29 @@
                 padding .4rem .7rem
                 background rgba(255, 255, 255, 0.2)
                 border-radius .25rem
+
                 .title
                     font-weight bold
                     font-size .85rem
+
                 .score-star
                     display flex
                     flex-direction row
                     flex-wrap nowrap
+
                     .sc-num
                         margin 5px 6px 0 0
                         color #ff9900
+
                 .comment-count
                     font-size .75rem
                     font-weight 300
+
         .view-feedback-box
             display flex
             flex-direction row
             width 100%
+
             .wish, .experienced
                 flex 1
                 padding 0.8rem 0
@@ -337,8 +371,10 @@
                 color #fff
                 background rgba(255, 255, 255, 0.2)
                 border-radius .25rem
+
             .wish
                 margin 0.6rem 0.25rem 0 0
+
             .experienced
                 margin 0.6rem 0 0 0.25rem
 </style>

@@ -4,6 +4,8 @@ const URL = {
     INDEX_CAROUSEL: 'common/carousel',
     TV: 'common/tv',
     TV_DETAILS: 'common/tv/:tvId',
+    VARIETY_SHOWS: 'common/shows',
+    VARIETY_SHOWS_DETAILS: 'common/show/:showId',
     BOOKS: 'common/books',
     BOOK_DETAILS: 'common/books/:bookId',
     MOVIE_RELEASED: 'common/released/:page',
@@ -119,7 +121,24 @@ export default {
         return request(URL.BOOK_DETAILS.replace(':bookId', bookId))
     },
 
+    /*
+    * 获取全部综艺信息
+    * @methods:get
+    *
+    * */
+    getShowList() {
+        return request(URL.VARIETY_SHOWS)
+    },
 
+    /*
+    * 获取指定单个综艺详情
+    * @params:bookId
+    * @method:get
+    *
+    * */
+    getShowDetails({showId}) {
+        return request(URL.VARIETY_SHOWS_DETAILS.replace(':showId', showId))
+    },
 
 
 }
