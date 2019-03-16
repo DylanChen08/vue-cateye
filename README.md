@@ -68,6 +68,16 @@ cd vue-catEye-backend
 npm run dev
 ```
 
+前端目录结构:
+
+![](http://wx1.sinaimg.cn/mw690/82dbebd3gy1g14gpnszpzj205t0gs74l.jpg)
+
+后端目录结构:
+
+![](http://wx1.sinaimg.cn/mw690/82dbebd3gy1g14gpn2lplj204o08u0sn.jpg)
+
 ### 最后
+
+来一波广告 公众号: ToastAurora , 偶尔写技术，思考人(gou)生 ~
 
 祝大家生活愉快 , 永远不会停止追寻技术的脚步！
