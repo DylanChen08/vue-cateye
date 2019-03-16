@@ -5,6 +5,8 @@
 
 =>点我去github [后端代码传送门](https://github.com/EaseCy/vue-catEye-backend)
 
+#### 关于
+
 ```
 本人2020届大三学生，之前学了Vue之后，萌生了一个想要做一个基于Vue的全栈SPA的想法。前端用的是Vue+Vuex+VueRouter+Lodash
 
@@ -21,7 +23,7 @@ star, 以后尽力不定期更新。:)
 
 还有一个是我在校前技术团队的技术总监[@Hyper Qing](https://github.com/hyperqing)，他的有一个很不错的[全栈魔法书](https://github.com/hyperqing/techbook)
 
-#### 放几张图
+#### 预览
 
 
 ![](http://wx1.sinaimg.cn/mw690/82dbebd3gy1g14fydj0zag20bh0kfkjm.gif)
@@ -33,6 +35,7 @@ star, 以后尽力不定期更新。:)
 
 
 #### 技术栈
+
 前端
 - Vue
 - Vuex
