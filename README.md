@@ -18,7 +18,7 @@ star, 以后尽力不定期更新。:)
 
 
 ```
-在这里，还要感谢帮助过我的两位同学，一个是解答了我很多问题的 [zwStar](https://github.com/zwStar)，他的很好的一个项目是[基于Vue高仿美团App
+在这里，还要感谢帮助过我的两位同学，一个是解答了我很多问题的 [@zwStar](https://github.com/zwStar)，他的很好的一个项目是[基于Vue高仿美团App
 ](https://github.com/zwStar/vue-meituan)
 
 还有一个是我在校前技术团队的技术总监[@Hyper Qing](https://github.com/hyperqing)，他的有一个很不错的[全栈魔法书](https://github.com/hyperqing/techbook)
