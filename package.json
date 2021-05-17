@@ -12,7 +12,7 @@
     "axios": "^0.18.0",
     "element-ui": "^2.4.8",
     "framework7": "^3.5.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
     "vue-swiper-component": "^2.1.3",
