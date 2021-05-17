@@ -79,8 +79,4 @@ npm run dev
 
 ![](http://wx1.sinaimg.cn/mw690/82dbebd3gy1g14gpn2lplj204o08u0sn.jpg)
 
-### 最后
 
-来一波广告 公众号: ToastAurora , 偶尔写技术，思考人(gou)生 ~
-
-祝大家生活愉快 , 永远不会停止追寻技术的脚步！
