@@ -5,19 +5,7 @@
 
 =>点我去github [后端代码传送门](https://github.com/EaseCy/vue-catEye-backend)
 
-#### 关于
 
-```
-本人2020届大三学生，之前学了Vue之后，萌生了一个想要做一个基于Vue的全栈SPA的想法。前端用的是Vue+Vuex+VueRouter+Lodash
-
-+ axios + BetterScroll, 后端用的是nodeJS+Express+MongoDB,目前阶段实现的功能有数据的渲染,各页面的跳转，分页加载数据。
-
-目前目暂时搁置了，很多功能没做(已做的部分也很菜,大家轻点喷...)，大家就将就一下看看hh,喜欢的话给个
-
-star, 以后尽力不定期更新。:)
-
-
-```
 在这里，还要感谢帮助过我的两位同学，一个是解答了我很多问题的 [@zwStar](https://github.com/zwStar)，他的很好的一个项目是[基于Vue高仿美团App
 ](https://github.com/zwStar/vue-meituan)
 
